@@ -45,17 +45,3 @@ Before starting my PhD I spent two years as an **FPGA engineer**, building
 high-performance digital systems in production. I received my BS in Electrical
 Engineering from the [University of Engineering and Technology, Peshawar](https://www.uetpeshawar.edu.pk/),
 graduating as a gold medalist.
-
----
-
-#### A note for students in Pakistan
-
-I went directly from a bachelor's degree to a fully funded PhD, without an MS
-first. Most students I knew believed that was not possible. It is — US
-universities admit students into funded PhD programmes straight out of a
-four-year BSc, and the MS is awarded along the way.
-
-If you are a student at UET or another public-sector university and you have
-questions about how funded PhD admission actually works, you are welcome to
-[email me](mailto:mrabbas@umich.edu). I would rather answer the same question
-fifty times than have people lose years to a misunderstanding.
