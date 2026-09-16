@@ -1,221 +1,272 @@
 {
   "basics": {
-    "name": "Albert Einstein",
-    "label": "Scientist",
+    "name": "Abbas Ali",
+    "label": "PhD Student, Electrical and Computer Engineering",
     "image": "",
-    "email": "einstein@example.com",
-    "phone": "(912) 123-4567",
-    "summary": "A German-born theoretical physicist, widely ranked among the greatest and most influential scientists of all time",
+    "email": "mrabbas@umich.edu",
+    "url": "https://codewithabbas.github.io",
+    "summary": "PhD researcher at the intersection of FPGA design and hardware security for cyber-physical systems, developing hardware fingerprinting for physical-layer device authentication that identifies embedded devices from the analog imperfections in their digital switching signals. Validated on production automotive ECUs and extending to drones and robotic platforms. Two years of industry experience in FPGA and RTL design before the PhD.",
     "location": {
-      "address": "2712 Broadway St",
-      "postalCode": "CA 94115",
-      "city": "San Francisco",
-      "countryCode": "US",
-      "region": "California"
+      "city": "Dearborn",
+      "region": "Michigan",
+      "countryCode": "US"
     },
-    "profiles": []
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "CodeWithAbbas",
+        "url": "https://github.com/CodeWithAbbas"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "engr-abbasali",
+        "url": "https://www.linkedin.com/in/engr-abbasali/"
+      },
+      {
+        "network": "ORCID",
+        "username": "0009-0007-4065-1237",
+        "url": "https://orcid.org/0009-0007-4065-1237"
+      },
+      {
+        "network": "Google Scholar",
+        "username": "Abbas Ali",
+        "url": "https://scholar.google.com/citations?user=he1jXaIAAAAJ"
+      }
+    ]
   },
   "work": [
     {
-      "name": "Institute for Advanced Study, Princeton University",
-      "position": "Professor of Theoretical Physics",
-      "location": "Princeton University, NJ",
-      "startDate": "1933-01-01",
-      "endDate": "1955-01-01",
-      "summary": "Teaching at Palmer Physical Laboratory (now 302 Frist Campus Center). While not a professor at Princeton, I associated with the physics professors and continued to give lectures on campus.",
-      "highlights": ["Relativity", "Description 2."]
+      "name": "University of Michigan-Dearborn",
+      "position": "Graduate Student Research Assistant",
+      "location": "Dearborn, MI",
+      "url": "https://umdearborn.edu",
+      "startDate": "2025-01",
+      "endDate": "",
+      "summary": "NSF-funded research in the Information Systems, Security, and Forensics (ISSF) Laboratory under Prof. Hafiz Malik.",
+      "highlights": [
+        "Hardware fingerprinting for physical-layer authentication of embedded devices",
+        "FPGA-based real-time intrusion detection for automotive and IoT systems",
+        "Electromagnetic and power side-channel analysis for tamper and counterfeit detection"
+      ]
     },
     {
-      "name": "California Institute of Technology",
-      "position": "Visiting Professor",
-      "location": "Pasadena, California, US",
-      "startDate": "1933-01-01",
-      "endDate": "1933-01-01",
-      "summary": "",
-      "highlights": ["Description 1.", "Description 2."]
+      "name": "IntelliFPGA",
+      "position": "FPGA Engineer",
+      "location": "United States (Remote)",
+      "startDate": "2022-09",
+      "endDate": "2024-10",
+      "summary": "Design and verification of high-performance digital systems.",
+      "highlights": [
+        "Migrated a legacy Altera codebase to VHDL for Intel Stratix 10 SoC, rebuilding DMA paths, AXI interfaces and IP blocks",
+        "Verification in ModelSim and Questa, using ILA to isolate divergence between silicon and simulation",
+        "SoC integration across AXI, DMA and the PS/PL boundary into DDR; synthesis and timing closure"
+      ]
     },
     {
-      "name": "Kaiser Wilhelm Institute for Physics",
-      "position": "Director",
-      "location": "Berlin, Germany",
-      "startDate": "1917-01-01",
-      "endDate": "1933-01-01",
-      "summary": "",
+      "name": "Chip Soul Technology",
+      "position": "Embedded Systems Engineer Intern",
+      "location": "Peshawar, Pakistan",
+      "startDate": "2021-09",
+      "endDate": "2021-10",
       "highlights": []
-    },
-    {
-      "name": "Karl-Ferdinand University",
-      "position": "Professor of Theoretical Physics",
-      "location": "Prague, Czechoslovakia",
-      "startDate": "1911-01-01",
-      "endDate": "1917-01-01",
-      "summary": "",
-      "highlights": []
-    },
-    {
-      "name": "University of Zurich",
-      "position": "Associate Professor of Theoretical Physics",
-      "location": "Zurich, Switzerland",
-      "startDate": "1909-01-01",
-      "endDate": "1911-01-01",
-      "summary": "",
-      "highlights": []
-    }
-  ],
-  "volunteer": [
-    {
-      "organization": "People's Climate March",
-      "location": "Zurich, Switzerland",
-      "position": "Lead Organizer",
-      "startDate": "2014-04-01",
-      "endDate": "2015-07-01",
-      "summary": "Lead organizer for the New York City branch of the People's Climate March, the largest climate march in history.",
-      "highlights": ["Awarded 'Climate Hero' award by Greenpeace for my efforts organizing the march.", "Men of the year 2014 by Time magazine"]
     }
   ],
   "education": [
     {
-      "institution": "University of Zurich",
-      "location": "Zurich, Switzerland",
-      "url": "https://www.uzh.ch/",
-      "area": "Physics",
+      "institution": "University of Michigan-Dearborn",
+      "area": "Electrical and Computer Engineering",
       "studyType": "PhD",
-      "startDate": "1900-01-01",
-      "endDate": "1905-01-01",
-      "score": "",
-      "courses": ["Theory of Relativity"],
-      "highlights": ["Description 1.", "Description 2."]
+      "startDate": "2025-01",
+      "endDate": "2029-12",
+      "score": "Anticipated December 2029",
+      "courses": [
+        "Computer Architecture",
+        "Reconfigurable Computing",
+        "Embedded Systems",
+        "Deep Learning",
+        "Pattern Recognition"
+      ]
     },
     {
-      "institution": "Eidgenössische Technische Hochschule",
-      "location": "Zurich, Switzerland",
-      "area": "Physics",
-      "studyType": "Federal teaching diploma",
-      "startDate": "1896-01-01",
-      "endDate": "1900-01-01",
-      "score": "",
-      "courses": [],
-      "highlights": ["Description 1.", "Description 2."]
+      "institution": "University of Engineering and Technology, Peshawar",
+      "area": "Electrical Engineering",
+      "studyType": "BS",
+      "startDate": "2018-09",
+      "endDate": "2022-08",
+      "score": "CGPA 3.83/4.00 — Gold Medalist",
+      "courses": []
     }
   ],
   "awards": [
     {
-      "title": "Nobel Prize in Physics",
-      "date": "1921-11-01",
-      "awarder": "Royal Swedish Academy of Sciences",
-      "url": "https://www.nobelprize.org/prizes/physics/1921/einstein/biographical/",
-      "summary": "The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'"
+      "title": "1st Place, Student Poster Competition (Graduate Division)",
+      "date": "2026-04-17",
+      "awarder": "2026 CCAT Global Symposium on Mobility Innovation, Ann Arbor, MI",
+      "summary": "For “A Lightweight IDS Framework Using FPGA-Based Hardware Fingerprinting on Zynq SoC”"
     },
     {
-      "title": "Max Planck Medal",
-      "date": "2029-01-01",
-      "awarder": "German Physical Society",
+      "title": "Gold Medal, Electrical Engineering",
+      "date": "2022",
+      "awarder": "University of Engineering and Technology, Peshawar",
+      "summary": "Top of the Electrical Engineering graduating class"
+    },
+    {
+      "title": "Teaching Assistant, FPGA Design and PCB Workshop",
+      "date": "2021",
+      "awarder": "University of Engineering and Technology, Peshawar",
       "summary": ""
-    }
-  ],
-  "certificates": [
-    {
-      "name": "Machine Learning",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "icon": "fa-solid fa-location-dot"
-    },
-    {
-      "name": "Quantum Computing",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "icon": "fa-solid fa-tag"
-    },
-    {
-      "name": "Quantum Information",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "icon": "fa-solid fa-envelope"
     }
   ],
   "publications": [
     {
-      "name": "Zur Elektrodynamik bewegter Körper",
-      "publisher": "Annalen der Physik",
-      "releaseDate": "1905-06-30",
-      "url": "https://en.wikisource.org/wiki/Translation:On_the_Electrodynamics_of_Moving_Bodies",
-      "summary": "It concerned an interpretation of the Michelson–Morley experiment and the properties of light and time. Special relativity incorporates the principle that the speed of light is the same for all inertial observers regardless of the state of motion of the source."
+      "name": "Short: Is Your ECU Really Yours?",
+      "publisher": "4th USENIX Symposium on Vehicle Security and Privacy (VehicleSec 26)",
+      "releaseDate": "2026-08",
+      "url": "https://www.usenix.org/conference/vehiclesec26/presentation/ali",
+      "summary": "A. Ali, H. Malik. pp. 359-370. Artifact Evaluated: Available, Functional, Reproduced."
     },
     {
-      "name": "Über einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt",
-      "publisher": "Annalen der Physik",
-      "releaseDate": "1905-03-18",
-      "url": "https://de.wikisource.org/wiki/Über_einen_die_Erzeugung_und_Verwandlung_des_Lichtes_betreffenden_heuristischen_Gesichtspunkt",
-      "summary": "In the second paper, he applied the quantum theory to light to explain the photoelectric effect. In particular, he used the idea of light quanta (photons) to explain experimental results, but stressed the importance of the experimental results. The importance of his work on the photoelectric effect earned him the Nobel Prize in Physics in 1921."
+      "name": "Real-Time Authentication of Embedded Hardware",
+      "publisher": "4th EAI International Conference on Security and Privacy in Cyber-Physical Systems and Smart Vehicles (SmartSP 2026)",
+      "releaseDate": "2026",
+      "url": "",
+      "summary": "H. Arif, A. Ali, S. Kiyani, H. Malik. Accepted."
     },
     {
-      "name": "Die Grundlage der allgemeinen Relativitätstheorie",
-      "publisher": "Annalen der Physik",
-      "releaseDate": "1916-03-20",
-      "url": "https://de.wikisource.org/wiki/Die_Grundlage_der_allgemeinen_Relativitätstheorie",
-      "summary": "The publication of the theory of general relativity made him internationally famous. He was professor of physics at the universities of Zurich (1909–1911) and Prague (1911–1912), before he returned to ETH Zurich (1912–1914)."
+      "name": "A Lightweight IDS Framework Using FPGA-Based Hardware Fingerprinting on Zynq SoC",
+      "publisher": "IEEE International Conference on Cyber Security and Resilience (CSR), Chania, Greece",
+      "releaseDate": "2025-08",
+      "url": "https://doi.org/10.1109/CSR64739.2025.11130113",
+      "summary": "A. W. Mohammed, A. Ali, H. Arif, F. R. P. Mohammed, H. Malik. pp. 544-549."
+    },
+    {
+      "name": "Speed vs. efficiency: A framework for high-frequency trading algorithms on FPGA using Zynq SoC platform",
+      "publisher": "Alexandria Engineering Journal, vol. 96",
+      "releaseDate": "2024-06",
+      "url": "https://doi.org/10.1016/j.aej.2024.03.064",
+      "summary": "A. Ali et al. pp. 1-14."
+    },
+    {
+      "name": "A performance comparison of machine learning models for stock market prediction with novel investment strategy",
+      "publisher": "PLOS ONE, vol. 18(9)",
+      "releaseDate": "2023-09",
+      "url": "https://doi.org/10.1371/journal.pone.0286362",
+      "summary": "A. H. Khan, A. Shah, A. Ali et al. e0286362."
     }
   ],
   "skills": [
     {
-      "name": "Physics",
-      "level": "Master",
-      "icon": "fa-solid fa-hashtag",
+      "name": "Design",
+      "level": "",
       "keywords": [
-        "Quantum Mechanics",
-        "Quantum Computing",
-        "Quantum Information",
-        "Quantum Cryptography",
-        "Quantum Communication",
-        "Quantum Teleportation"
+        "SystemVerilog",
+        "Verilog",
+        "VHDL",
+        "RTL and logic design",
+        "Computer arithmetic",
+        "AXI / AXI-Stream",
+        "DMA",
+        "PS/PL",
+        "DDR",
+        "BRAM",
+        "IP block design",
+        "Synthesis",
+        "Static timing analysis",
+        "Timing closure"
+      ]
+    },
+    {
+      "name": "Verification and Debug",
+      "level": "",
+      "keywords": [
+        "Testbench creation",
+        "Functional simulation",
+        "Python-generated test vectors",
+        "ModelSim",
+        "Questa",
+        "ILA",
+        "Logic analyzers",
+        "PicoScope",
+        "SCPI test automation"
+      ]
+    },
+    {
+      "name": "Software",
+      "level": "",
+      "keywords": [
+        "C",
+        "C++",
+        "Python",
+        "Tcl",
+        "Shell",
+        "MATLAB",
+        "Linux",
+        "Docker cross-compilation",
+        "Git",
+        "PyTorch",
+        "Scikit-learn"
+      ]
+    },
+    {
+      "name": "Tools and Platforms",
+      "level": "",
+      "keywords": [
+        "Vivado",
+        "Vitis",
+        "Vitis HLS",
+        "ISE Design Suite",
+        "Zynq-7000/7020",
+        "Stratix 10 SoC",
+        "ZedBoard",
+        "PYNQ-Z2",
+        "Mimas V2 Spartan-6",
+        "Red Pitaya STEMlab",
+        "AD9467-FMC"
       ]
     }
   ],
   "languages": [
     {
-      "language": "German",
-      "fluency": "Native speaker",
-      "icon": ""
+      "language": "English",
+      "fluency": "Professional"
     },
     {
-      "language": "English",
-      "fluency": "Fluent",
-      "icon": ""
+      "language": "Urdu",
+      "fluency": "Native"
+    },
+    {
+      "language": "Pashto",
+      "fluency": "Native"
     }
   ],
   "interests": [
     {
-      "name": "Physics",
-      "icon": "fa-solid fa-tag",
+      "name": "Hardware Security",
       "keywords": [
-        "Quantum Mechanics",
-        "Quantum Computing",
-        "Quantum Information",
-        "Quantum Cryptography",
-        "Quantum Communication",
-        "Quantum Teleportation"
+        "Device fingerprinting",
+        "Side-channel analysis",
+        "Counterfeit and tamper detection"
+      ]
+    },
+    {
+      "name": "Cyber-Physical Systems",
+      "keywords": [
+        "Automotive and ECU security",
+        "Real-time intrusion detection",
+        "IoT security"
+      ]
+    },
+    {
+      "name": "Reconfigurable Computing",
+      "keywords": [
+        "Machine learning on FPGAs",
+        "Hardware/software co-design",
+        "Real-time signal processing"
       ]
     }
   ],
-  "references": [
-    {
-      "name": "Professor John Doe",
-      "icon": "fa-solid fa-laptop",
-      "reference": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit."
-    },
-    {
-      "name": "Professor Jane Smith",
-      "icon": "fa-solid fa-thumbtack",
-      "reference": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit."
-    }
-  ],
-  "projects": [
-    {
-      "name": "Quantum Computing",
-      "summary": "Quantum computing is the use of quantum-mechanical phenomena such as superposition and entanglement to perform computation. Computers that perform quantum computations are known as quantum computers.",
-      "highlights": ["Quantum Teleportation", "Quantum Cryptography"],
-      "startDate": "2018-01-01",
-      "endDate": "2018-01-01"
-    }
-  ]
+  "volunteer": [],
+  "certificates": [],
+  "references": [],
+  "projects": []
 }
