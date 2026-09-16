@@ -1,8 +1,8 @@
 ---
 layout: post
-date: 2026-03-01 09:00:00-0500
+date: 2026-04-17 09:00:00-0400
 inline: true
 related_posts: false
 ---
 
-Won **1st place** at the CCAT Symposium Poster Competition for *Securing Cyber-Physical Systems Through Hardware Fingerprinting on FPGA*. &nbsp;<!-- TODO: correct the date to the actual symposium date -->
+Won the **graduate division** of the student poster competition at the <a href="https://ccat.umtri.umich.edu/symposium/2026-symposium/">2026 CCAT Global Symposium on Mobility Innovation</a>, Ann Arbor.
