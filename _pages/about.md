@@ -2,33 +2,60 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
+subtitle: >
+  PhD Student, <a href="https://umdearborn.edu/cecs/departments/electrical-and-computer-engineering">Electrical and Computer Engineering</a> ·
+  University of Michigan-Dearborn
 
 profile:
   align: right
   image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
+  image_circular: false
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+    <p>Information Systems, Security,<br>and Forensics (ISSF) Lab</p>
+    <p>4901 Evergreen Road<br>Dearborn, MI 48128</p>
 
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+selected_papers: true
+social: true
 
 announcements:
-  enabled: true # includes a list of news items
-  scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-  limit: 5 # leave blank to include all the news in the `_news` folder
-
-latest_posts:
   enabled: true
-  scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
-  limit: 3 # leave blank to include all the blog posts
+  scrollable: true
+  limit: 5
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](https://www.reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+I am a PhD student and NSF-funded Graduate Student Research Assistant in the
+Department of Electrical and Computer Engineering at the
+[University of Michigan-Dearborn](https://umdearborn.edu), where I work in the
+Information Systems, Security, and Forensics (ISSF) Laboratory with
+[Prof. Hafiz Malik](https://umdearborn.edu/people-um-dearborn/hafiz-malik).
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+My research is on **securing cyber-physical systems at the hardware level**.
+Modern vehicles and connected devices contain dozens of embedded computers, and
+the assumption that each one is genuine and untampered with is rarely verified.
+I build systems that check that assumption directly — using the physical
+characteristics of the silicon itself.
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+Specifically, I work on:
+
+- **Hardware fingerprinting** — identifying devices by manufacturing variations unique to each chip
+- **FPGA-based intrusion detection** — detection that runs in real time, in the vehicle, rather than in the cloud
+- **Side-channel analysis** — using electromagnetic and power measurements to detect tampering and counterfeit components
+
+Before starting my PhD I spent two years as an **FPGA engineer**, building
+high-performance digital systems in production. I received my BS in Electrical
+Engineering from the [University of Engineering and Technology, Peshawar](https://www.uetpeshawar.edu.pk/),
+graduating as a gold medalist.
+
+---
+
+#### A note for students in Pakistan
+
+I went directly from a bachelor's degree to a fully funded PhD, without an MS
+first. Most students I knew believed that was not possible. It is — US
+universities admit students into funded PhD programmes straight out of a
+four-year BSc, and the MS is awarded along the way.
+
+If you are a student at UET or another public-sector university and you have
+questions about how funded PhD admission actually works, you are welcome to
+[email me](mailto:mrabbas@umich.edu). I would rather answer the same question
+fifty times than have people lose years to a misunderstanding.

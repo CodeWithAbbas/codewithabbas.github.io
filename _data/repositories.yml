@@ -1,14 +1,8 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - CodeWithAbbas
 
 repo_description_lines_max: 2
 
+# TODO: list your own public repos here once you have ones worth showing,
+# e.g.  - CodeWithAbbas/some-project
 github_repos:
-  - alshedivat/al-folio
-  - jekyll/jekyll
-  - twbs/bootstrap
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - mathjax/MathJax
-  - jpswalsh/academicons
