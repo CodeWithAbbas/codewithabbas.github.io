@@ -23,6 +23,15 @@ announcements:
   limit: 5
 ---
 
+<style>
+  /* give the profile image more breathing room from the body text */
+  .profile.float-right { padding-left: 2.5rem; }
+  /* on narrow screens the image stacks above the text, so drop the gutter */
+  @media (max-width: 768px) {
+    .profile.float-right { padding-left: 0; }
+  }
+</style>
+
 I am a PhD student and NSF-funded Graduate Student Research Assistant in the
 Department of Electrical and Computer Engineering at the
 [University of Michigan-Dearborn](https://umdearborn.edu), where I work in the
