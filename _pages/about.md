@@ -115,8 +115,8 @@ graduating as a gold medalist.
 <section class="ria" aria-labelledby="ria-heading">
   <header class="ria-head">
     <p class="ria-eyebrow"><span class="ria-dot"></span>Research in Action</p>
-    <h2 id="ria-heading">From bench to conference floor</h2>
-    <p class="ria-lede">A device does not need to announce what it is. Manufacturing leaves every chip with slightly different switching behaviour &mdash; overshoot, ringing, settling time. An attacker can copy firmware, a serial number, or a message. They cannot copy physics.</p>
+    <h2 id="ria-heading">From the conference floor, back to the bench</h2>
+    <p class="ria-lede">Demonstrated live at USENIX VehicleSec &rsquo;26 in Baltimore &mdash; and the work that got it there. A device does not need to announce what it is: manufacturing leaves every chip with slightly different switching behaviour, and an attacker who can copy firmware, a serial number or a message still cannot copy physics.</p>
     <svg class="ria-wave" viewBox="0 0 900 90" preserveAspectRatio="none" aria-hidden="true" focusable="false">
       <path class="ria-wave-path" d="M0,62 L110,62 L118,16 L126,44 L132,26 L138,36 L144,30 L150,32 L240,32 L248,74 L256,50 L262,66 L268,58 L274,60 L370,60 L378,14 L386,42 L392,24 L398,34 L404,30 L500,30 L508,72 L516,48 L522,64 L528,56 L534,60 L630,60 L638,16 L646,44 L652,26 L658,36 L664,31 L760,31 L768,73 L776,49 L782,65 L788,57 L794,60 L900,60" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
     </svg>
@@ -126,54 +126,50 @@ graduating as a gold medalist.
   <ol class="ria-rail" id="ria-rail">
     <li class="ria-card">
       <span class="ria-node" aria-hidden="true"></span>
-      <figure class="ria-media"><img src="/assets/img/research/hardware.jpg" alt="Examining an electronic control unit with Prof. Hafiz Malik, with identical modules laid out on the bench" loading="lazy" width="1100" height="733"></figure>
-      <div class="ria-body">
-        <span class="ria-step">01 &middot; The mechanism</span>
-        <h3>Physics as identity</h3>
-        <p>Two chips off the same reel switch slightly differently. That difference is measurable, and it is not something firmware can rewrite.</p>
-      </div>
-    </li>
-
-    <li class="ria-card">
-      <span class="ria-node" aria-hidden="true"></span>
-      <figure class="ria-media"><img src="/assets/img/research/bench.jpg" alt="Array of test boards instrumented for measurement" loading="lazy" width="1100" height="733"></figure>
-      <div class="ria-body">
-        <span class="ria-step">02 &middot; The bench</span>
-        <h3>Same make, same model</h3>
-        <p>Eight devices across four hardware types, including boards of the same make and model.</p>
-        <p class="ria-stat"><b>99.5%</b> real-time accuracy &mdash; no firmware changes, no protocol access</p>
-      </div>
-    </li>
-
-    <li class="ria-card">
-      <span class="ria-node" aria-hidden="true"></span>
-      <figure class="ria-media"><img src="/assets/img/research/labcar.jpg" alt="Holding a production automotive ECU at the ISSF laboratory test bench" loading="lazy" width="1100" height="733"></figure>
-      <div class="ria-body">
-        <span class="ria-step">03 &middot; Production hardware</span>
-        <h3>Nine real ECUs, weeks apart</h3>
-        <p>Electrically identical production automotive ECUs, captured across thirteen sessions over several weeks. A fingerprint that holds only within one sitting cannot be deployed.</p>
-      </div>
-    </li>
-
-    <li class="ria-card">
-      <span class="ria-node" aria-hidden="true"></span>
       <figure class="ria-media"><img src="/assets/img/research/demo.jpg" alt="Presenting the live hardware demonstration at USENIX VehicleSec 2026" loading="lazy" width="1100" height="733"></figure>
       <div class="ria-body">
-        <span class="ria-step">04 &middot; Baltimore</span>
+        <span class="ria-step">Baltimore &middot; the demo</span>
         <h3>Live on the table</h3>
         <p>Real devices at VehicleSec &rsquo;26, identified in real time purely from the analog shape of their switching signals.</p>
         <a class="ria-link" href="https://www.usenix.org/conference/vehiclesec26/presentation/ali-demo">Demo abstract</a>
       </div>
     </li>
-
     <li class="ria-card">
       <span class="ria-node" aria-hidden="true"></span>
       <figure class="ria-media"><img src="/assets/img/research/talk.jpg" alt="Presenting Is Your ECU Really Yours at the VehicleSec 2026 podium" loading="lazy" width="1100" height="733"></figure>
       <div class="ria-body">
-        <span class="ria-step">05 &middot; The talk</span>
+        <span class="ria-step">Baltimore &middot; the talk</span>
         <h3>Is Your ECU Really Yours?</h3>
         <p>The paper talk, alongside a lightning talk extending the method to production ECUs over the CAN bus.</p>
         <a class="ria-link" href="https://www.usenix.org/conference/vehiclesec26/presentation/ali">Read the paper</a>
+      </div>
+    </li>
+    <li class="ria-card">
+      <span class="ria-node" aria-hidden="true"></span>
+      <figure class="ria-media"><img src="/assets/img/research/hardware.jpg" alt="Examining an electronic control unit with Prof. Hafiz Malik, with identical modules laid out on the bench" loading="lazy" width="1100" height="733"></figure>
+      <div class="ria-body">
+        <span class="ria-step">Behind it &middot; the mechanism</span>
+        <h3>Physics as identity</h3>
+        <p>Two chips off the same reel switch slightly differently. That difference is measurable, and it is not something firmware can rewrite.</p>
+      </div>
+    </li>
+    <li class="ria-card">
+      <span class="ria-node" aria-hidden="true"></span>
+      <figure class="ria-media"><img src="/assets/img/research/bench.jpg" alt="Array of test boards instrumented for measurement" loading="lazy" width="1100" height="733"></figure>
+      <div class="ria-body">
+        <span class="ria-step">Behind it &middot; the bench</span>
+        <h3>Same make, same model</h3>
+        <p>Eight devices across four hardware types, including boards of the same make and model.</p>
+        <p class="ria-stat"><b>99.5%</b> real-time accuracy &mdash; no firmware changes, no protocol access</p>
+      </div>
+    </li>
+    <li class="ria-card">
+      <span class="ria-node" aria-hidden="true"></span>
+      <figure class="ria-media"><img src="/assets/img/research/labcar.jpg" alt="Holding a production automotive ECU at the ISSF laboratory test bench" loading="lazy" width="1100" height="733"></figure>
+      <div class="ria-body">
+        <span class="ria-step">Behind it &middot; production hardware</span>
+        <h3>Nine real ECUs, weeks apart</h3>
+        <p>Electrically identical production automotive ECUs, captured across thirteen sessions over several weeks. A fingerprint that holds only within one sitting cannot be deployed.</p>
       </div>
     </li>
   </ol>
