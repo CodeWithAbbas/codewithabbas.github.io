@@ -147,7 +147,7 @@ graduating as a gold medalist.
 
     <li class="ria-card">
       <span class="ria-node" aria-hidden="true"></span>
-      <figure class="ria-media"><img src="/assets/img/research/labcar.jpg" alt="Testing at the ETAS LABCAR hardware-in-the-loop station" loading="lazy" width="1100" height="733"></figure>
+      <figure class="ria-media"><img src="/assets/img/research/labcar.jpg" alt="Holding a production automotive ECU at the ISSF laboratory test bench" loading="lazy" width="1100" height="733"></figure>
       <div class="ria-body">
         <span class="ria-step">03 &middot; Production hardware</span>
         <h3>Nine real ECUs, weeks apart</h3>
