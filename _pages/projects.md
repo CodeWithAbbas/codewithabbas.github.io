@@ -4,7 +4,7 @@ title: projects
 permalink: /projects/
 description: Research and engineering work in hardware security and reconfigurable computing.
 nav: true
-nav_order: 3
+nav_order: 4
 display_categories: [research, systems]
 horizontal: false
 ---

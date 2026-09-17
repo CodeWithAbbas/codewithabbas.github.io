@@ -1,15 +1,30 @@
 ---
 layout: page
-title: ECU Authenticity
-description: Verifying the electronic control units inside modern vehicles
+title: Embedded Acquisition on Zynq
+description: Moving capture into programmable logic for standalone deployment
 importance: 2
 category: research
 ---
 
-A modern car contains a large number of electronic control units (ECUs)
-governing everything from engine timing to braking. Replacing or reprogramming
-one is a physical-safety problem, not only a data-security one.
+The Red Pitaya prototype proved the method but depended on a general-purpose
+instrument. For deployment the acquisition front end had to become part of the
+device.
 
-This work asks a direct question: can a vehicle tell whether its own ECUs are
-the ones it left the factory with? The results were accepted at **VehicleSec
-2026** under the title *Short: Is Your ECU Really Yours?*
+Ported the front end onto **Zynq-7000** with the **AD9467-FMC 16-bit ADC**, moving
+capture into programmable logic with DMA into PS DDR — a standalone embedded
+system rather than an instrument on a bench.
+
+**Separating signature from artifact**
+
+A fingerprint that is really an artifact of the measuring equipment is worthless.
+Cross-validated **three ADCs against three probes in every combination**.
+Accuracy held at **100%**.
+
+Published at **IEEE CSR 2025** (Chania, Greece).
+
+**Where it goes next**
+
+Currently extending beyond automotive ECUs to drones, robotic arms, GPUs, battery
+management systems and hardware-in-the-loop test stations — testing whether one
+physical mechanism, manufacturing variation in switching behaviour, holds across
+every class of embedded device.
