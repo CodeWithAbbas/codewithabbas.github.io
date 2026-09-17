@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Won the **graduate division** of the student poster competition at the <a href="https://ccat.umtri.umich.edu/symposium/2026-symposium/">2026 CCAT Global Symposium on Mobility Innovation</a>, Ann Arbor.
+Won the **graduate division** of the student poster competition at the [2026 CCAT Global Symposium on Mobility Innovation](https://ccat.umtri.umich.edu/symposium/2026-symposium/), Ann Arbor.

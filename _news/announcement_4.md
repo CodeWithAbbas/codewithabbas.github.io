@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Started my PhD in Electrical and Computer Engineering at the **University of Michigan-Dearborn**, funded by the NSF.
+Started my PhD in [Electrical and Computer Engineering](https://umdearborn.edu/cecs/departments/electrical-and-computer-engineering) at the **University of Michigan-Dearborn**, funded by the NSF.

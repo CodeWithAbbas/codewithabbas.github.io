@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-*Real-Time Authentication of Embedded Hardware* has been accepted at **EAI SmartSP 2026**.
+*Real-Time Authentication of Embedded Hardware* has been accepted at [EAI SmartSP 2026](https://smartsp.eai-conferences.org/2026/).
