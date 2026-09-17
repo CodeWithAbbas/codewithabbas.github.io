@@ -181,16 +181,6 @@ graduating as a gold medalist.
   </button>
   <p class="ria-hint"><span class="ria-hint-bar"><i></i></span>Drifting &mdash; hover to pause, click to hold</p>
   </div>
-
-  <figure class="ria-quote">
-    <blockquote>Nobody asked whether it works. They asked whether it <em>survives</em>.</blockquote>
-    <figcaption>
-      How does the fingerprint hold when an engine heats the whole bay? What happens at a thousand
-      devices instead of nine? When do two devices overlap and become indistinguishable?
-      Every one of those is now on my experiment list.
-      <a class="ria-link" href="https://www.linkedin.com/in/engr-abbasali/">View on LinkedIn</a>
-    </figcaption>
-  </figure>
 </section>
 
 <style>
@@ -261,13 +251,8 @@ graduating as a gold medalist.
 .ria-rail.is-manual ~ .ria-hint .ria-hint-bar i{animation-play-state:paused}
 @keyframes ria-sweep{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
 
-.ria-quote{margin:.75rem 0 0;padding-left:1.15rem;border-left:3px solid var(--global-theme-color);max-width:46rem}
-.ria-quote blockquote{margin:0 0 .55rem;padding:0;border:0;font-size:1.12rem;line-height:1.45;font-style:italic}
-.ria-quote figcaption{font-size:.86rem;line-height:1.6;color:var(--ria-mut)}
-.ria-quote .ria-link{margin-left:.15rem}
 
-@media (max-width:576px){.ria{margin-top:2.5rem}.ria-wave{height:44px}.ria-quote blockquote{font-size:1rem}
-}
+@media (max-width:576px){.ria{margin-top:2.5rem}.ria-wave{height:44px}}
 @media (prefers-reduced-motion:reduce){
   .ria-dot,.ria-hint-bar i{animation:none}
   .ria-wave-path{stroke-dashoffset:0}
