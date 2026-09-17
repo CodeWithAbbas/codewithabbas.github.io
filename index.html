@@ -49,10 +49,6 @@
 .ria.is-live .ria-rail::before{transform:scaleX(1)}
 
 /* edge fades so cards drift in and out rather than clipping hard */
-.ria-railwrap::before,.ria-railwrap::after{content:"";position:absolute;top:0;bottom:0;width:3.5rem;pointer-events:none;z-index:2;opacity:0;transition:opacity .4s ease}
-.ria-railwrap::before{left:-.3rem;background:linear-gradient(to right,var(--global-bg-color,#fff),transparent)}
-.ria-railwrap::after{right:-.3rem;background:linear-gradient(to left,var(--global-bg-color,#fff),transparent)}
-.ria-railwrap.has-fade::before,.ria-railwrap.has-fade::after{opacity:1}
 
 .ria-card{position:relative;flex:0 0 clamp(15.5rem,76vw,20.5rem);
   border:1px solid var(--ria-line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;
@@ -81,8 +77,8 @@
 
 /* motion-state hint */
 .ria-hint{display:flex;align-items:center;gap:.45rem;font-size:.7rem;letter-spacing:.06em;
-  color:var(--ria-mut);margin:.1rem 0 0;min-height:1.1rem;opacity:0;transition:opacity .45s ease}
-.ria-railwrap.has-fade .ria-hint{opacity:.75}
+  color:var(--ria-mut);margin:.1rem 0 0;min-height:1.1rem;transition:opacity .45s ease}
+.ria-hint{opacity:.75}
 .ria-hint-bar{width:26px;height:2px;background:var(--ria-line);border-radius:2px;overflow:hidden;position:relative}
 .ria-hint-bar i{position:absolute;inset:0;background:var(--global-theme-color);transform-origin:left;
   transform:scaleX(0);animation:ria-sweep 3.2s linear infinite}
@@ -96,7 +92,7 @@
 .ria-quote .ria-link{margin-left:.15rem}
 
 @media (max-width:576px){.ria{margin-top:2.5rem}.ria-wave{height:44px}.ria-quote blockquote{font-size:1rem}
-  .ria-railwrap::before,.ria-railwrap::after{width:1.75rem}}
+}
 @media (prefers-reduced-motion:reduce){
   .ria-dot,.ria-hint-bar i{animation:none}
   .ria-wave-path{stroke-dashoffset:0}
@@ -109,27 +105,26 @@
 }
 
 /* ---- rail arrows ---- */
-.ria-nav{position:absolute;top:calc(2rem + ((100% - 2rem - 1.6rem - 1.1rem) * 0.30));
+.ria-nav{position:absolute;top:calc(2rem + clamp(15.5rem,76vw,20.5rem)/3);transform:translateY(-50%);
   width:38px;height:38px;border-radius:50%;z-index:3;display:grid;place-items:center;
   border:1px solid var(--ria-line);background:var(--global-bg-color,#fff);color:inherit;
-  cursor:pointer;padding:0;opacity:0;pointer-events:none;
+  cursor:pointer;padding:0;opacity:.94;
   box-shadow:0 2px 10px rgba(0,0,0,.08);
   transition:opacity .3s ease,background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease}
 .ria-nav svg{width:18px;height:18px;display:block}
 .ria-prev{left:-.1rem}
 .ria-next{right:-.1rem}
-.ria-railwrap.has-fade .ria-nav{opacity:.92;pointer-events:auto}
-.ria-nav:hover{border-color:var(--global-theme-color);color:var(--global-theme-color);transform:scale(1.07)}
+.ria-nav:hover{border-color:var(--global-theme-color);color:var(--global-theme-color);opacity:1;transform:translateY(-50%) scale(1.07)}
 .ria-nav:focus-visible{outline:2px solid var(--global-theme-color);outline-offset:2px}
-.ria-nav:active{transform:scale(.96)}
+.ria-nav:active{transform:translateY(-50%) scale(.96)}
 @media (max-width:576px){
   .ria-nav{width:32px;height:32px}
   .ria-nav svg{width:15px;height:15px}
   .ria-prev{left:-.35rem}.ria-next{right:-.35rem}
 }
 @media (prefers-reduced-motion:reduce){
-  .ria-nav{opacity:.92;pointer-events:auto;transition:none}
-  .ria-nav:hover{transform:none}
+  .ria-nav{transition:none}
+  .ria-nav:hover{transform:translateY(-50%)}
 }
 </style> <script>
 (function () {
