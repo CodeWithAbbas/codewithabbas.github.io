@@ -123,7 +123,7 @@ graduating as a gold medalist.
   </header>
 
   <div class="ria-railwrap">
-  <ol class="ria-rail">
+  <ol class="ria-rail" id="ria-rail">
     <li class="ria-card">
       <span class="ria-node" aria-hidden="true"></span>
       <figure class="ria-media"><img src="/assets/img/research/hardware.jpg" alt="Instrumented test devices on the ISSF laboratory bench" loading="lazy" width="1100" height="733"></figure>
@@ -177,6 +177,12 @@ graduating as a gold medalist.
       </div>
     </li>
   </ol>
+  <button class="ria-nav ria-prev" type="button" aria-label="Previous items" aria-controls="ria-rail">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <button class="ria-nav ria-next" type="button" aria-label="Next items" aria-controls="ria-rail">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
   <p class="ria-hint"><span class="ria-hint-bar"><i></i></span>Drifting &mdash; hover to pause, click to hold</p>
   </div>
 
@@ -280,27 +286,77 @@ graduating as a gold medalist.
   .ria-card:hover{transform:none}
   .ria-card:hover .ria-media img{transform:none}
 }
+
+/* ---- rail arrows ---- */
+.ria-nav{position:absolute;top:calc(2rem + ((100% - 2rem - 1.6rem - 1.1rem) * 0.30));
+  width:38px;height:38px;border-radius:50%;z-index:3;display:grid;place-items:center;
+  border:1px solid var(--ria-line);background:var(--global-bg-color,#fff);color:inherit;
+  cursor:pointer;padding:0;opacity:0;pointer-events:none;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+  transition:opacity .3s ease,background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease}
+.ria-nav svg{width:18px;height:18px;display:block}
+.ria-prev{left:-.1rem}
+.ria-next{right:-.1rem}
+.ria-railwrap.has-fade .ria-nav{opacity:.92;pointer-events:auto}
+.ria-nav:hover{border-color:var(--global-theme-color);color:var(--global-theme-color);transform:scale(1.07)}
+.ria-nav:focus-visible{outline:2px solid var(--global-theme-color);outline-offset:2px}
+.ria-nav:active{transform:scale(.96)}
+@media (max-width:576px){
+  .ria-nav{width:32px;height:32px}
+  .ria-nav svg{width:15px;height:15px}
+  .ria-prev{left:-.35rem}.ria-next{right:-.35rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .ria-nav{opacity:.92;pointer-events:auto;transition:none}
+  .ria-nav:hover{transform:none}
+}
 </style>
 
 <script>
 (function () {
   var SPEED = 62;        // px per second
-  var START_DELAY = 900; // let the reveal settle before drifting
+  var START_DELAY = 900;
 
   function init() {
     var sec  = document.querySelector('.ria');
     if (!sec) return;
     var rail = sec.querySelector('.ria-rail');
-    if (!rail) return;
+    var wrap = sec.querySelector('.ria-railwrap');
+    if (!rail || !wrap) return;
 
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var cards  = Array.prototype.slice.call(rail.querySelectorAll('.ria-card'));
+    var prevBtn = sec.querySelector('.ria-prev');
+    var nextBtn = sec.querySelector('.ria-next');
+    var reduce  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var cards   = Array.prototype.slice.call(rail.querySelectorAll('.ria-card'));
+    if (!cards.length) return;
+
+    var half = 0;                       // width of one full card set once cloned
+    var takeControl = function () {};   // replaced when drifting starts
+
+    function stepSize() {
+      var gap = parseFloat(getComputedStyle(rail).columnGap || getComputedStyle(rail).gap || 0) || 0;
+      return Math.round(cards[0].getBoundingClientRect().width + gap);
+    }
+
+    function nudge(dir) {
+      takeControl();
+      var d = stepSize() * dir;
+      if (half) {                       // keep the loop seamless across the seam
+        if (dir > 0 && rail.scrollLeft + d >= half) rail.scrollLeft -= half;
+        else if (dir < 0 && rail.scrollLeft + d < 0) rail.scrollLeft += half;
+      }
+      if (rail.scrollBy) rail.scrollBy({ left: d, behavior: reduce ? 'auto' : 'smooth' });
+      else rail.scrollLeft += d;
+    }
+    if (prevBtn) prevBtn.addEventListener('click', function () { nudge(-1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { nudge(1); });
 
     // ---- reveal ------------------------------------------------------
     if (reduce || !('IntersectionObserver' in window)) {
       sec.classList.add('is-live');
       rail.classList.add('is-manual');
-      return;                                   // no drifting at all
+      wrap.classList.add('has-fade');   // arrows still available
+      return;
     }
     cards.forEach(function (c) {
       c.style.opacity = '0';
@@ -312,25 +368,23 @@ graduating as a gold medalist.
     var started = false;
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        if (e.target === sec) {
-          sec.classList.add('is-live');
-          cards.forEach(function (c, i) {
-            setTimeout(function () { c.style.opacity = '1'; c.style.transform = 'none'; },
-                       Math.min(i, 4) * 90);
-          });
-          io.unobserve(sec);
-          if (!started) { started = true; setTimeout(startDrift, START_DELAY); }
-        }
+        if (!e.isIntersecting || e.target !== sec) return;
+        sec.classList.add('is-live');
+        cards.forEach(function (c, i) {
+          setTimeout(function () { c.style.opacity = '1'; c.style.transform = 'none'; },
+                     Math.min(i, 4) * 90);
+        });
+        io.unobserve(sec);
+        if (!started) { started = true; setTimeout(startDrift, START_DELAY); }
       });
     }, { rootMargin: '0px 0px -6% 0px', threshold: 0.1 });
     io.observe(sec);
 
     // ---- auto-drift --------------------------------------------------
     function startDrift() {
-      // seamless loop: duplicate the set once, reset at the halfway mark
-      var half = rail.scrollWidth;
-      if (rail.clientWidth >= half - 4) return;   // everything already fits
+      var full = rail.scrollWidth;
+      if (rail.clientWidth >= full - 4) { wrap.classList.add('has-fade'); return; }
+      half = full;
       cards.forEach(function (c) {
         var clone = c.cloneNode(true);
         clone.setAttribute('aria-hidden', 'true');
@@ -341,28 +395,28 @@ graduating as a gold medalist.
         });
         rail.appendChild(clone);
       });
-      rail.parentNode.classList.add('has-fade');
+      wrap.classList.add('has-fade');
 
       var hovering = false, offscreen = false, hidden = false, manual = false;
       var carry = 0, last = 0, raf = 0;
 
       function paused() { return hovering || offscreen || hidden; }
-      function syncClass() {
-        rail.classList.toggle('is-paused', paused() && !manual);
-      }
+      function syncClass() { rail.classList.toggle('is-paused', paused() && !manual); }
 
-      function takeControl() {
+      takeControl = function () {
         if (manual) return;
         manual = true;
         rail.classList.add('is-manual');
         rail.classList.remove('is-paused');
         cancelAnimationFrame(raf);
-      }
+        var hint = sec.querySelector('.ria-hint');
+        if (hint) hint.textContent = 'Use the arrows or swipe to browse';
+      };
 
       function step(t) {
         if (manual) return;
         if (!last) last = t;
-        var dt = Math.min((t - last) / 1000, 0.05);   // clamp after tab switches
+        var dt = Math.min((t - last) / 1000, 0.05);
         last = t;
         if (!paused()) {
           carry += SPEED * dt;
@@ -377,18 +431,20 @@ graduating as a gold medalist.
       }
       raf = requestAnimationFrame(step);
 
-      // pause while the pointer or keyboard focus is on the rail
       rail.addEventListener('mouseenter', function () { hovering = true;  syncClass(); });
       rail.addEventListener('mouseleave', function () { hovering = false; last = 0; syncClass(); });
       rail.addEventListener('focusin',    function () { hovering = true;  syncClass(); });
       rail.addEventListener('focusout',   function () { hovering = false; last = 0; syncClass(); });
+      [prevBtn, nextBtn].forEach(function (b) {
+        if (!b) return;
+        b.addEventListener('mouseenter', function () { hovering = true;  syncClass(); });
+        b.addEventListener('mouseleave', function () { hovering = false; last = 0; syncClass(); });
+      });
 
-      // any deliberate interaction hands control over for good
       ['pointerdown', 'wheel', 'touchstart', 'keydown'].forEach(function (ev) {
         rail.addEventListener(ev, takeControl, { passive: true });
       });
 
-      // don't burn frames off-screen or in a background tab
       new IntersectionObserver(function (es) {
         offscreen = !es[0].isIntersecting; last = 0; syncClass();
       }, { threshold: 0 }).observe(rail);
