@@ -1,10 +1,9 @@
 name: Update Google Scholar Citations
 
+# NOTE: the scheduled runs are disabled. Google Scholar blocks GitHub's
+# datacenter IPs, so this workflow times out when run from CI. Refresh the
+# numbers from a normal network instead:  python bin/refresh_citations.py
 on:
-  schedule:
-    - cron: "0 0 * * 1" # Monday
-    - cron: "0 0 * * 3" # Wednesday
-    - cron: "0 0 * * 5" # Friday
   workflow_dispatch:
 
 jobs:

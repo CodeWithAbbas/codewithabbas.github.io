@@ -1,3 +1,19 @@
 metadata:
   last_updated: '2026-09-16'
-papers: {}
+papers:
+  he1jXaIAAAAJ:9yKSN-GCB0IC:
+    citations: 0
+    title: 'Short: Is Your {ECU} Really Yours?'
+    year: '2026'
+  he1jXaIAAAAJ:d1gkVwhDpl0C:
+    citations: 4
+    title: 'A Lightweight IDS Framework Using FPGA-Based Hardware Fingerprinting on Zynq SoC'
+    year: '2025'
+  he1jXaIAAAAJ:u-x6o8ySG0sC:
+    citations: 59
+    title: 'A performance comparison of machine learning models for stock market prediction with novel investment strategy'
+    year: '2023'
+  he1jXaIAAAAJ:u5HHmVD_uO8C:
+    citations: 10
+    title: 'Speed vs. efficiency: A framework for high-frequency trading algorithms on FPGA using Zynq SoC platform'
+    year: '2024'
