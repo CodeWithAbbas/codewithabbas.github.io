@@ -115,8 +115,8 @@ graduating as a gold medalist.
 <section class="ria" aria-labelledby="ria-heading">
   <header class="ria-head">
     <p class="ria-eyebrow"><span class="ria-dot"></span>Research in Action</p>
-    <h2 id="ria-heading">From the conference floor, back to the bench</h2>
-    <p class="ria-lede">Demonstrated live at USENIX VehicleSec &rsquo;26 in Baltimore &mdash; and the work that got it there. A device does not need to announce what it is: manufacturing leaves every chip with slightly different switching behaviour, and an attacker who can copy firmware, a serial number or a message still cannot copy physics.</p>
+    <h2 id="ria-heading">From bench to conference floor</h2>
+    <p class="ria-lede">A device does not need to announce what it is. Manufacturing leaves every chip with slightly different switching behaviour &mdash; overshoot, ringing, settling time. An attacker can copy firmware, a serial number, or a message. They cannot copy physics.</p>
     <svg class="ria-wave" viewBox="0 0 900 90" preserveAspectRatio="none" aria-hidden="true" focusable="false">
       <path class="ria-wave-path" d="M0,62 L110,62 L118,16 L126,44 L132,26 L138,36 L144,30 L150,32 L240,32 L248,74 L256,50 L262,66 L268,58 L274,60 L370,60 L378,14 L386,42 L392,24 L398,34 L404,30 L500,30 L508,72 L516,48 L522,64 L528,56 L534,60 L630,60 L638,16 L646,44 L652,26 L658,36 L664,31 L760,31 L768,73 L776,49 L782,65 L788,57 L794,60 L900,60" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
     </svg>
@@ -148,7 +148,7 @@ graduating as a gold medalist.
       <span class="ria-node" aria-hidden="true"></span>
       <figure class="ria-media"><img src="/assets/img/research/hardware.jpg" alt="Examining an electronic control unit with Prof. Hafiz Malik, with identical modules laid out on the bench" loading="lazy" width="1100" height="733"></figure>
       <div class="ria-body">
-        <span class="ria-step">Behind it &middot; the mechanism</span>
+        <span class="ria-step">The mechanism</span>
         <h3>Physics as identity</h3>
         <p>Two chips off the same reel switch slightly differently. That difference is measurable, and it is not something firmware can rewrite.</p>
       </div>
@@ -157,7 +157,7 @@ graduating as a gold medalist.
       <span class="ria-node" aria-hidden="true"></span>
       <figure class="ria-media"><img src="/assets/img/research/bench.jpg" alt="Array of test boards instrumented for measurement" loading="lazy" width="1100" height="733"></figure>
       <div class="ria-body">
-        <span class="ria-step">Behind it &middot; the bench</span>
+        <span class="ria-step">The bench</span>
         <h3>Same make, same model</h3>
         <p>Eight devices across four hardware types, including boards of the same make and model.</p>
         <p class="ria-stat"><b>99.5%</b> real-time accuracy &mdash; no firmware changes, no protocol access</p>
@@ -167,7 +167,7 @@ graduating as a gold medalist.
       <span class="ria-node" aria-hidden="true"></span>
       <figure class="ria-media"><img src="/assets/img/research/labcar.jpg" alt="Holding a production automotive ECU at the ISSF laboratory test bench" loading="lazy" width="1100" height="733"></figure>
       <div class="ria-body">
-        <span class="ria-step">Behind it &middot; production hardware</span>
+        <span class="ria-step">Production hardware</span>
         <h3>Nine real ECUs, weeks apart</h3>
         <p>Electrically identical production automotive ECUs, captured across thirteen sessions over several weeks. A fingerprint that holds only within one sitting cannot be deployed.</p>
       </div>
