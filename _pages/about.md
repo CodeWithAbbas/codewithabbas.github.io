@@ -126,7 +126,7 @@ graduating as a gold medalist.
   <ol class="ria-rail" id="ria-rail">
     <li class="ria-card">
       <span class="ria-node" aria-hidden="true"></span>
-      <figure class="ria-media"><img src="/assets/img/research/hardware.jpg" alt="Instrumented test devices on the ISSF laboratory bench" loading="lazy" width="1100" height="733"></figure>
+      <figure class="ria-media"><img src="/assets/img/research/hardware.jpg" alt="Examining an electronic control unit with Prof. Hafiz Malik, with identical modules laid out on the bench" loading="lazy" width="1100" height="733"></figure>
       <div class="ria-body">
         <span class="ria-step">01 &middot; The mechanism</span>
         <h3>Physics as identity</h3>
