@@ -258,7 +258,7 @@ graduating as a gold medalist.
 .ria-railwrap.has-fade .ria-hint{opacity:.75}
 .ria-hint-bar{width:26px;height:2px;background:var(--ria-line);border-radius:2px;overflow:hidden;position:relative}
 .ria-hint-bar i{position:absolute;inset:0;background:var(--global-theme-color);transform-origin:left;
-  transform:scaleX(0);animation:ria-sweep 5.5s linear infinite}
+  transform:scaleX(0);animation:ria-sweep 3.2s linear infinite}
 .ria-rail.is-paused ~ .ria-hint .ria-hint-bar i,
 .ria-rail.is-manual ~ .ria-hint .ria-hint-bar i{animation-play-state:paused}
 @keyframes ria-sweep{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
@@ -284,7 +284,7 @@ graduating as a gold medalist.
 
 <script>
 (function () {
-  var SPEED = 26;        // px per second — deliberately slow
+  var SPEED = 62;        // px per second
   var START_DELAY = 900; // let the reveal settle before drifting
 
   function init() {
