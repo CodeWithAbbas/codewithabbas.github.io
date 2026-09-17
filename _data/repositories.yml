@@ -3,6 +3,11 @@ github_users:
 
 repo_description_lines_max: 2
 
-# TODO: list your own public repos here once you have ones worth showing,
-# e.g.  - CodeWithAbbas/some-project
+# Selected repositories — the ones that support the work described elsewhere
+# on this site. Add more as they become presentable.
 github_repos:
+  - CodeWithAbbas/Academic-Work
+  - CodeWithAbbas/FYP_project
+  - CodeWithAbbas/CPU_16_bit_VHDL
+  - CodeWithAbbas/ece5831-2025-final-project
+  - CodeWithAbbas/FPGA-Designing
