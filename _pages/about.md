@@ -53,7 +53,7 @@ Specifically, I work on:
 - **FPGA-based intrusion detection** — detection that runs in real time, in the vehicle, rather than in the cloud
 - **Side-channel analysis** — using electromagnetic and power measurements to detect tampering and counterfeit components
 
-Before starting my PhD I spent two years as an **FPGA engineer**, building
+Before starting my PhD I spent two years as a **Lead FPGA Engineer**, building
 high-performance digital systems in production. I received my BS in Electrical
 Engineering from the [University of Engineering and Technology, Peshawar](https://www.uetpeshawar.edu.pk/),
 graduating as a gold medalist.

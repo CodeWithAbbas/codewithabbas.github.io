@@ -7,6 +7,9 @@ importance: 4
 category: systems
 ---
 
+**My role** — individual coursework: each design below is my own RTL, verification
+and implementation, end to end.
+
 #### 16-bit single-cycle CPU in VHDL
 
 Full datapath on Zynq-7020 — ALU with eight operations, 8×16-bit dual-read register
