@@ -5,7 +5,7 @@
     "image": "",
     "email": "mrabbas@umich.edu",
     "url": "https://codewithabbas.github.io",
-    "summary": "PhD researcher at the intersection of FPGA design and hardware security for cyber-physical systems, developing hardware fingerprinting for physical-layer device authentication that identifies embedded devices from the analog imperfections in their digital switching signals. Validated on production automotive ECUs and extending to drones and robotic platforms. Two years of industry experience in FPGA and RTL design before the PhD.",
+    "summary": "Lead FPGA engineer turned PhD researcher, working at the intersection of RTL design and hardware security for cyber-physical systems. Two years of industry FPGA/RTL work (SystemVerilog, VHDL, Verilog; AXI, DMA, PS/PL into DDR; synthesis and timing closure) before the PhD. Current research develops hardware fingerprinting for physical-layer device authentication, identifying embedded devices from the analog imperfections in their digital switching signals, validated on production automotive ECUs. Open to Summer 2027 internships in RTL design, design verification, and FPGA/SoC engineering.",
     "location": {
       "city": "Dearborn",
       "region": "Michigan",
@@ -51,7 +51,7 @@
     },
     {
       "name": "IntelliFPGA",
-      "position": "FPGA Engineer",
+      "position": "Lead FPGA Engineer",
       "location": "United States (Remote)",
       "startDate": "2022-09",
       "endDate": "2024-10",
@@ -68,6 +68,15 @@
       "location": "Peshawar, Pakistan",
       "startDate": "2021-09",
       "endDate": "2021-10",
+      "highlights": []
+    },
+    {
+      "name": "University of Engineering and Technology, Peshawar",
+      "position": "Teaching Assistant, FPGA Design and PCB Workshop",
+      "location": "Peshawar, Pakistan",
+      "startDate": "",
+      "endDate": "",
+      "summary": "Assisted in delivering an FPGA design and PCB workshop for undergraduate students.",
       "highlights": []
     }
   ],
@@ -109,12 +118,6 @@
       "date": "2022",
       "awarder": "University of Engineering and Technology, Peshawar",
       "summary": "Top of the Electrical Engineering graduating class"
-    },
-    {
-      "title": "Teaching Assistant, FPGA Design and PCB Workshop",
-      "date": "2021",
-      "awarder": "University of Engineering and Technology, Peshawar",
-      "summary": ""
     }
   ],
   "publications": [
@@ -157,7 +160,6 @@
   "skills": [
     {
       "name": "Design",
-      "level": "",
       "keywords": [
         "SystemVerilog",
         "Verilog",
@@ -177,7 +179,6 @@
     },
     {
       "name": "Verification and Debug",
-      "level": "",
       "keywords": [
         "Testbench creation",
         "Functional simulation",
@@ -192,7 +193,6 @@
     },
     {
       "name": "Software",
-      "level": "",
       "keywords": [
         "C",
         "C++",
@@ -209,7 +209,6 @@
     },
     {
       "name": "Tools and Platforms",
-      "level": "",
       "keywords": [
         "Vivado",
         "Vitis",
@@ -240,6 +239,15 @@
     }
   ],
   "interests": [
+    {
+      "name": "Digital Design and Verification",
+      "keywords": [
+        "RTL design in SystemVerilog, VHDL and Verilog",
+        "Testbench development and functional simulation",
+        "Synthesis, static timing analysis and timing closure",
+        "AXI, DMA and PS/PL SoC integration"
+      ]
+    },
     {
       "name": "Hardware Security",
       "keywords": [

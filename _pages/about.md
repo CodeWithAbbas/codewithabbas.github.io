@@ -38,6 +38,9 @@ Department of Electrical and Computer Engineering at the
 Information Systems, Security, and Forensics (ISSF) Laboratory with
 [Prof. Hafiz Malik](https://umdearborn.edu/people-um-dearborn/hafiz-malik).
 
+<p class="avail"><strong>Open to Summer 2027 internships</strong> in RTL design, design verification, and FPGA/SoC engineering. <a href="/assets/pdf/AbbasAli_CV.pdf">Resume (PDF)</a> &middot; <a href="/contact/">Contact</a></p>
+<style>.avail{border-left:3px solid var(--global-theme-color);padding:.45rem .9rem;margin:1rem 0 1.25rem;font-size:.95rem;color:var(--global-text-color-light,#828282)}.avail strong{color:var(--global-text-color)}</style>
+
 My research is on **securing cyber-physical systems at the hardware level**.
 Modern vehicles and connected devices contain dozens of embedded computers, and
 the assumption that each one is genuine and untampered with is rarely verified.

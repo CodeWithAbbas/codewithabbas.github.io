@@ -34,6 +34,7 @@ nav_order: 6
     <section class="ct-block">
       <h3>Happy to hear about</h3>
       <ul>
+        <li><strong>Summer 2027 internships</strong> in RTL design, design verification, and FPGA/SoC engineering</li>
         <li>Research collaborations in hardware security and cyber-physical systems</li>
         <li>Questions about the fingerprinting work, including things that did not make the papers</li>
         <li>Talks, demos and reviewing</li>

@@ -2,6 +2,7 @@
 layout: page
 title: Hardware Fingerprinting
 description: Catching device substitution that passes every cryptographic check
+img: assets/img/research/bench.jpg
 importance: 1
 category: research
 ---
@@ -28,7 +29,16 @@ Acquisition and inference happen on the board itself, with no host PC at any ECU
 125 MS/s DMA capture on a Red Pitaya STEMlab to resolve sub-microsecond switching
 edges, feature extraction from raw waveforms, and ARM32 Docker inference.
 
-Published at **USENIX VehicleSec '26**.
+**My role** — lead author and sole implementer: signal acquisition design, the
+feature pipeline, the on-device inference path, and the multi-week ECU study.
+Supervised by Prof. Hafiz Malik.
+
+**Tools** — Red Pitaya STEMlab (125 MS/s), PicoScope, SCPI automation, Python,
+Scikit-learn, Docker cross-compilation for ARM32.
+
+**Links** — [paper (USENIX VehicleSec '26)](https://www.usenix.org/conference/vehiclesec26/presentation/ali) ·
+[slides](https://www.usenix.org/system/files/vehiclesec26-slides-ali.pdf) ·
+[artifact on Zenodo](https://zenodo.org/records/19666939) — *Artifact Evaluated: Available, Functional, Reproduced*
 
 *Funded by the National Science Foundation. Information Systems, Security, and
 Forensics (ISSF) Laboratory, UM-Dearborn.*

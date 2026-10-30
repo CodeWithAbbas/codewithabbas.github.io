@@ -11,6 +11,7 @@ nav_order: 3
 
 **Conference Talk** — [Short: Is Your ECU Really Yours?](https://www.usenix.org/conference/vehiclesec26/presentation/ali)
 4th USENIX Symposium on Vehicle Security and Privacy (VehicleSec '26), Baltimore, MD — August 2026
+[slides (PDF)](https://www.usenix.org/system/files/vehiclesec26-slides-ali.pdf) · [artifact on Zenodo](https://zenodo.org/records/19666939) — Artifact Evaluated: Available, Functional, Reproduced
 
 **Lightning Talk** — [Toward Physical-Layer Fingerprinting of Production Automotive ECUs via CAN Bus Signals](https://www.usenix.org/conference/vehiclesec26/presentation/lightning-talks)
 USENIX VehicleSec '26, Baltimore, MD — August 2026

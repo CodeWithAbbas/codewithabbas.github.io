@@ -9,14 +9,14 @@ last_name: Ali
 contact_note: >
   Email is the best way to reach me.
 description: >
-  PhD student in Electrical and Computer Engineering at the University of
-  Michigan-Dearborn. Hardware security, FPGA-based intrusion detection, and
-  cyber-physical system security.
+  Abbas Ali - PhD student in Electrical and Computer Engineering at the University of
+  Michigan-Dearborn. RTL design, design verification and FPGA/SoC engineering; hardware
+  security and physical-layer fingerprinting of embedded devices.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
   Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
-keywords: hardware security, FPGA, intrusion detection, device fingerprinting, side-channel analysis, cyber-physical systems, automotive security, ECU security
+keywords: Abbas Ali, FPGA, RTL design, SystemVerilog, VHDL, Verilog, design verification, Zynq SoC, AXI, DMA, timing closure, hardware security, device fingerprinting, side-channel analysis, automotive security, ECU security, cyber-physical systems
 lang: en
 icon: 🔐
 apple_touch_icon: # image name in /assets/img/ (or a rooted path / absolute URL) used for iOS home-screen bookmarks; needs a real 180x180 PNG, since Safari ignores the emoji favicon above. Left empty, iOS falls back to a screenshot of the page.
@@ -112,9 +112,9 @@ max_width: 930px
 # -----------------------------------------------------------------------------
 # Display links to the page with a preview object on social media.
 # see https://schema.org/docs/faq.html for more information
-serve_og_meta: false # Include Open Graph meta tags in the HTML head
+serve_og_meta: true # Include Open Graph meta tags in the HTML head
 serve_schema_org: false # Include Schema.org in the HTML head
-og_image: # The site-wide (default for all links) Open Graph preview image
+og_image: /assets/img/og.jpg # 1200x630 link-preview card
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification
