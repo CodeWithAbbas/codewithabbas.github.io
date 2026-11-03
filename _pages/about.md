@@ -61,8 +61,8 @@ graduating as a gold medalist.
 <section class="ria" aria-labelledby="ria-heading">
   <header class="ria-head">
     <p class="ria-eyebrow"><span class="ria-dot"></span>Research in Action</p>
-    <h2 id="ria-heading">From bench to conference floor</h2>
-    <p class="ria-lede">A device does not need to announce what it is. Manufacturing leaves every chip with slightly different switching behaviour &mdash; overshoot, ringing, settling time. An attacker can copy firmware, a serial number, or a message. They cannot copy physics.</p>
+    <h2 id="ria-heading">Built, tested, demonstrated &mdash; and still running</h2>
+    <p class="ria-lede">Every result below exists in hardware. A device does not need to announce what it is. Manufacturing leaves every chip with slightly different switching behaviour &mdash; overshoot, ringing, settling time. An attacker can copy firmware, a serial number, or a message. They cannot copy physics.</p>
     <svg class="ria-wave" viewBox="0 0 900 90" preserveAspectRatio="none" aria-hidden="true" focusable="false">
       <path class="ria-wave-path" d="M0,62 L110,62 L118,16 L126,44 L132,26 L138,36 L144,30 L150,32 L240,32 L248,74 L256,50 L262,66 L268,58 L274,60 L370,60 L378,14 L386,42 L392,24 L398,34 L404,30 L500,30 L508,72 L516,48 L522,64 L528,56 L534,60 L630,60 L638,16 L646,44 L652,26 L658,36 L664,31 L760,31 L768,73 L776,49 L782,65 L788,57 L794,60 L900,60" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
     </svg>
