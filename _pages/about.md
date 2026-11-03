@@ -20,7 +20,7 @@ social: true
 announcements:
   enabled: true
   scrollable: true
-  limit: 8
+  limit: 9
 ---
 
 <style>
@@ -90,6 +90,17 @@ graduating as a gold medalist.
         <a class="ria-link" href="https://www.usenix.org/conference/vehiclesec26/presentation/ali">Read the paper</a>
       </div>
     </li>
+    <li class="ria-card">
+      <span class="ria-node" aria-hidden="true"></span>
+      <figure class="ria-media"><img src="/assets/img/research/redpitaya.jpg" alt="Annotated test bench from the Red Pitaya feature: Analog Discovery 3, STM32F4 Discovery, Elegoo and Arduino UNO boards, a Red Pitaya STEMlab 125-14 and the host PC" loading="lazy" width="864" height="576"></figure>
+      <div class="ria-body">
+        <span class="ria-step">Red Pitaya &middot; featured</span>
+        <h3>Featured on the Red Pitaya blog</h3>
+        <p>Red Pitaya&rsquo;s technical team profiled the work: individual devices identified from the analog shape of their switching signals, with the whole pipeline on a STEMlab 125-14 and no host PC after enrollment.</p>
+        <a class="ria-link" href="https://content.redpitaya.com/blog/hardware-fingerprinting-red-pitaya-cyber-physical-security">Read the post</a>
+      </div>
+    </li>
+
     <li class="ria-card">
       <span class="ria-node" aria-hidden="true"></span>
       <figure class="ria-media"><img src="/assets/img/research/hardware.jpg" alt="Examining an electronic control unit with Prof. Hafiz Malik, with identical modules laid out on the bench" loading="lazy" width="1100" height="733"></figure>
