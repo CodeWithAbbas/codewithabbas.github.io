@@ -1,0 +1,1545 @@
+<!doctype html><html lang="en"><head>
+    <meta charset="utf-8">
+    <title>Hardware Fingerprinting for Cyber-Physical Systems: How an FPGA-Based Board Identifies Rogue Devices at the Physical Layer</title>
+    <link rel="shortcut icon" href="https://content.redpitaya.com/hubfs/Red-pitaya-fav-ikona.png">
+    <meta name="description" content="Discover how UM-Dearborn researchers used the Red Pitaya STEMlab 125-14 to identify counterfeit ECUs with 99.5% accuracy via physical signal fingerprinti">
+    
+        
+        
+   
+   
+   
+    
+<link type="text/css" rel="stylesheet" href="https://content.redpitaya.com/hubfs/hub_generated/template_assets/1/58765872431/1793364471401/template__blog.min.css">
+
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:description" content="Discover how UM-Dearborn researchers used the Red Pitaya STEMlab 125-14 to identify counterfeit ECUs with 99.5% accuracy via physical signal fingerprinti">
+    <meta property="og:title" content="Hardware Fingerprinting for Cyber-Physical Systems: How an FPGA-Based Board Identifies Rogue Devices at the Physical Layer">
+    <meta name="twitter:description" content="Discover how UM-Dearborn researchers used the Red Pitaya STEMlab 125-14 to identify counterfeit ECUs with 99.5% accuracy via physical signal fingerprinti">
+    <meta name="twitter:title" content="Hardware Fingerprinting for Cyber-Physical Systems: How an FPGA-Based Board Identifies Rogue Devices at the Physical Layer">
+
+    
+
+    
+    <style>
+a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
+</style>
+
+<link rel="stylesheet" href="https://content.redpitaya.com/hubfs/hub_generated/template_assets/1/58765872422/1793364469440/template_main.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&amp;display=auto&amp;ver=5.8.1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed%3A400%2C600%2C700%2C500&amp;ver=6.0.4">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins%3A400%2C500%2C600%2C700&amp;display=swap">
+<link rel="stylesheet" href="https://content.redpitaya.com/hubfs/hub_generated/template_assets/1/58765828251/1793364466236/template_theme-overrides.css">
+<link rel="stylesheet" href="https://content.redpitaya.com/hubfs/hub_generated/module_assets/1/58765828247/1741044304028/module_blog-topic-list.min.css">
+<link rel="stylesheet" href="https://content.redpitaya.com/hubfs/hub_generated/module_assets/1/58764922373/1741044299731/module_blog-recent-posts.min.css">
+<link rel="stylesheet" href="https://content.redpitaya.com/hubfs/hub_generated/module_assets/1/58764922455/1785746629558/module_blog-subscription-form.min.css">
+<link rel="stylesheet" href="https://content.redpitaya.com/hubfs/hub_generated/module_assets/1/58771902622/1785746630232/module_footer-social-follow.min.css">
+    <script type="application/ld+json">
+{
+  "mainEntityOfPage" : {
+    "@type" : "WebPage",
+    "@id" : "https://content.redpitaya.com/blog/hardware-fingerprinting-red-pitaya-cyber-physical-security"
+  },
+  "author" : {
+    "name" : "Red Pitaya Technical Editorial Team",
+    "url" : "https://content.redpitaya.com/blog/author/red-pitaya-technical-editorial-team",
+    "@type" : "Person"
+  },
+  "headline" : "Hardware Fingerprinting for Cyber-Physical Systems: How an FPGA-Based Board Identifies Rogue Devices at the Physical Layer",
+  "datePublished" : "2026-10-27T09:00:00.000Z",
+  "dateModified" : "2026-10-27T09:00:00.822Z",
+  "publisher" : {
+    "name" : "Red Pitaya d.o.o.",
+    "logo" : {
+      "url" : "https://content.redpitaya.com/hubfs/Red-pitaya-logo.jpg",
+      "@type" : "ImageObject"
+    },
+    "@type" : "Organization"
+  },
+  "@context" : "https://schema.org",
+  "@type" : "BlogPosting",
+  "image" : [ "https://content.redpitaya.com/hubfs/blog%20featured%20image%20-%202026-10-21T104326.335.jpg" ]
+}
+</script>
+
+
+    
+<!--  Added by GoogleAnalytics integration -->
+<script data-cookieconsent="ignore">
+var _hsp = window._hsp = window._hsp || [];
+_hsp.push(['addPrivacyConsentListener', function(consent) { if (consent.allowed || (consent.categories && consent.categories.analytics)) {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create','UA-41832406-1','auto');
+  ga('send','pageview');
+}}]);
+</script>
+
+<!-- /Added by GoogleAnalytics integration -->
+
+<!--  Added by GoogleAnalytics4 integration -->
+<script data-cookieconsent="ignore">
+var _hsp = window._hsp = window._hsp || [];
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+var useGoogleConsentModeV2 = true;
+var waitForUpdateMillis = 1000;
+
+
+if (!window._hsGoogleConsentRunOnce) {
+  window._hsGoogleConsentRunOnce = true;
+
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'wait_for_update': waitForUpdateMillis
+  });
+
+  if (useGoogleConsentModeV2) {
+    _hsp.push(['useGoogleConsentModeV2'])
+  } else {
+    _hsp.push(['addPrivacyConsentListener', function(consent){
+      var hasAnalyticsConsent = consent && (consent.allowed || (consent.categories && consent.categories.analytics));
+      var hasAdsConsent = consent && (consent.allowed || (consent.categories && consent.categories.advertisement));
+
+      gtag('consent', 'update', {
+        'ad_storage': hasAdsConsent ? 'granted' : 'denied',
+        'analytics_storage': hasAnalyticsConsent ? 'granted' : 'denied',
+        'ad_user_data': hasAdsConsent ? 'granted' : 'denied',
+        'ad_personalization': hasAdsConsent ? 'granted' : 'denied'
+      });
+    }]);
+  }
+}
+
+gtag('js', new Date());
+gtag('set', 'developer_id.dZTQ1Zm', true);
+gtag('config', 'G-NRZQ8W3BPV');
+</script>
+<script data-cookieconsent="ignore" async src="https://www.googletagmanager.com/gtag/js?id=G-NRZQ8W3BPV"></script>
+
+<!-- /Added by GoogleAnalytics4 integration -->
+
+<!--  Added by GoogleTagManager integration -->
+<script data-cookieconsent="ignore">
+var _hsp = window._hsp = window._hsp || [];
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+var useGoogleConsentModeV2 = true;
+var waitForUpdateMillis = 1000;
+
+if (useGoogleConsentModeV2) {
+
+  gtag('set','developer_id.dZTQ1Zm',true);
+
+  gtag('consent', 'default', {
+  'ad_storage': 'denied',
+  'analytics_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': waitForUpdateMillis
+  });
+}
+
+var hsLoadGtm = function loadGtm() {
+    if(window._hsGtmLoadOnce) {
+      return;
+    }
+
+    if (useGoogleConsentModeV2) {
+      _hsp.push(['useGoogleConsentModeV2'])
+    }
+
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PNRFV66T');
+
+    window._hsGtmLoadOnce = true;
+};
+
+_hsp.push(['addPrivacyConsentListener', function(consent){
+  if(consent.allowed || (consent.categories && consent.categories.analytics)){
+    hsLoadGtm();
+  }
+}]);
+
+</script>
+
+<!-- /Added by GoogleTagManager integration -->
+
+
+<!-- Google Tag Manager -->
+<script>...</script>
+<!-- End Google Tag Manager -->
+<link rel="amphtml" href="https://content.redpitaya.com/blog/hardware-fingerprinting-red-pitaya-cyber-physical-security?hs_amp=true">
+
+<meta property="og:image" content="https://content.redpitaya.com/hubfs/blog%20featured%20image%20-%202026-10-21T104326.335.jpg">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1000">
+
+<meta name="twitter:image" content="https://content.redpitaya.com/hubfs/blog%20featured%20image%20-%202026-10-21T104326.335.jpg">
+
+
+<meta property="og:url" content="https://content.redpitaya.com/blog/hardware-fingerprinting-red-pitaya-cyber-physical-security">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="canonical" href="https://content.redpitaya.com/blog/hardware-fingerprinting-red-pitaya-cyber-physical-security">
+
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" href="https://content.redpitaya.com/blog/rss.xml">
+<meta name="twitter:domain" content="content.redpitaya.com">
+<script src="//platform.linkedin.com/in.js" type="text/javascript">
+    lang: en_US
+</script>
+
+<meta http-equiv="content-language" content="en">
+
+
+
+
+
+
+  <meta name="generator" content="HubSpot"></head>
+  <body>
+<!--  Added by GoogleTagManager integration -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNRFV66T" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- /Added by GoogleTagManager integration -->
+
+    <div class="body-wrapper   hs-content-id-225003571220 hs-blog-post hs-blog-id-29387126926">
+      
+        <div data-global-resource-path="Red_Pitaya_November_2021/templates/partials/header.html"><div class="custom-header greenp-header-bar-wrapper">
+  <header class="header">
+    <div class="main_header">
+      <div class="header_container">
+        <div class="main_header_row">
+          <div class="header_logo">
+            <div class="header_logo_inner">
+              <span class="desktop_logo">
+                <div id="hs_cos_wrapper_header_logo" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-logo" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <span id="hs_cos_wrapper_header_logo_hs_logo_widget" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_logo" style="" data-hs-cos-general-type="widget" data-hs-cos-type="logo"><a href="https://redpitaya.com/" id="hs-link-header_logo_hs_logo_widget" style="border-width:0px;border:0px;"><img src="https://content.redpitaya.com/hubfs/raw_assets/public/Red_Pitaya_November_2021/images/redpitaya-logo-des.svg" class="hs-image-widget " height="47" style="height: auto;width:150px;border-width:0px;border:0px;" width="150" alt="Red Pitaya" title="Red Pitaya"></a></span>
+</div>
+              </span>
+              <span class="sticky_logo">
+                <div id="hs_cos_wrapper_header_sticky_logo" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-logo" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <span id="hs_cos_wrapper_header_sticky_logo_hs_logo_widget" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_logo" style="" data-hs-cos-general-type="widget" data-hs-cos-type="logo"><a href="https://redpitaya.com/" id="hs-link-header_sticky_logo_hs_logo_widget" style="border-width:0px;border:0px;"><img src="https://content.redpitaya.com/hubfs/raw_assets/public/Red_Pitaya_November_2021/images/redpitaya-logo.svg" class="hs-image-widget " height="265" style="height: auto;width:150px;border-width:0px;border:0px;" width="150" alt="Red Pitaya" title="Red Pitaya"></a></span>
+</div>
+              </span>
+            </div>
+          </div>
+
+          <div class="navigation_rows">
+            <div class="navigation_row_padding">
+              <div class="header__navigation header--element">
+                <div id="hs_cos_wrapper_navigation-primary" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+
+
+
+
+
+
+
+
+
+
+
+<nav aria-label="Main menu" class="navigation-primary">
+
+
+
+
+<ul class="submenu level-1" aria-hidden="false">
+
+  
+
+<li class="has-submenu menu-item">
+<a href="javascript:;" class="menu-link">Products</a>
+
+
+<div class="child-trigger"></div>
+
+
+
+
+<ul class="submenu level-2" aria-hidden="true">
+
+  
+
+<li class="has-submenu menu-item">
+<a href="https://redpitaya.com/stemlab-125-14-gen2/" class="menu-link">STEMlab 125-14 Gen 2</a>
+
+
+<div class="child-trigger"></div>
+
+
+
+
+<ul class="submenu level-3" aria-hidden="true">
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/stemlab-125-14/" class="menu-link">STEMlab 125-14</a>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/signallab-250-12/" class="menu-link">SIGNALlab 250-12</a>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/sdrlab-122-16/" class="menu-link">SDRlab 122-16</a>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/stemlab-ti-texas-instruments/" class="menu-link">STEMlab TI (Texas Instruments)</a>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/multi-channel-solutions/" class="menu-link">Multi-channel Solutions</a>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/accessories/" class="menu-link">Accessories</a>
+
+
+</li>
+
+
+</ul>
+
+
+</li>
+
+
+</ul>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/applications/" class="menu-link">Applications</a>
+
+
+</li>
+
+
+  
+
+<li class="has-submenu menu-item">
+<a href="javascript:;" class="menu-link">Documentation</a>
+
+
+<div class="child-trigger"></div>
+
+
+
+
+<ul class="submenu level-2" aria-hidden="true">
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/documentation/" class="menu-link">Technical Documentation						</a>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/teaching-materials/" class="menu-link">Teaching materials											</a>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/student-projects/" class="menu-link">Student projects					</a>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://forum.redpitaya.com/" class="menu-link">User forum						</a>
+
+
+</li>
+
+
+</ul>
+
+
+</li>
+
+
+  
+
+<li class="has-submenu menu-item">
+<a href="https://redpitaya.com/about-us/" class="menu-link">About</a>
+
+
+<div class="child-trigger"></div>
+
+
+
+
+<ul class="submenu level-2" aria-hidden="true">
+
+  
+
+<li class="has-submenu menu-item">
+<a href="https://redpitaya.com/history/" class="menu-link">History</a>
+
+
+<div class="child-trigger"></div>
+
+
+
+
+<ul class="submenu level-3" aria-hidden="true">
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/distibutors-red-pitaya/" class="menu-link">Distributors</a>
+
+
+</li>
+
+
+</ul>
+
+
+</li>
+
+
+</ul>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://content.redpitaya.com/blog" class="menu-link">Blog</a>
+
+
+</li>
+
+
+</ul>
+
+</nav></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="navigation_rows_right">
+            <div class="shop_button">
+              <div id="hs_cos_wrapper_sign_up_shop" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+  
+
+
+
+  
+    
+  
+
+
+
+<a class="hs-button" href="https://redpitaya.com/shop/" id="hs-button_sign_up_shop" rel="">
+  Shop
+</a>
+
+</div>
+            </div>
+
+
+            <div class="trigger_icon">
+              <a href="#">
+                <span class="trigger-tools-icon"> </span>
+              </a>
+            </div>
+   
+            <div class="search_icon">
+              <a href="javascript:void(0);">
+                <span class="wd-tools-icon"> </span>
+              </a>
+              <div class="wd-search-dropdown">
+                <div class="header_search_inner">
+                  <form role="search" method="get" class="searchform" action="https://redpitaya.com/">
+                    <input class="search_input" type="text" placeholder="Search for pages" value="" name="s" aria-label="Search" title="Search for pages">
+                    <input type="hidden" name="post_type" value="page">
+                    <button type="submit" class="searchsubmit"></button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="header_bottom">
+        <div class="header_container"><div id="hs_cos_wrapper_nav-bottom" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+
+
+
+
+
+
+
+
+
+
+
+<nav aria-label="Main menu">
+
+
+
+
+<ul class="submenu level-1" aria-hidden="false">
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/academia/" class="menu-link">ACADEMIA</a>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/radio-amateurs/" class="menu-link">RADIO AMATEURS</a>
+
+
+</li>
+
+
+</ul>
+
+</nav></div></div>
+      </div>
+    </div>
+  </header>
+</div>
+
+<div class="mobile_area">
+  <div class="mobile_layer"></div>
+  <div class="mobile-nav">
+    <div class="mobile-wd-search-form">
+      <form role="search" method="get" class="mobile-searchform" action="https://redpitaya.com/">
+        <input type="text" class="mobile_search_input" placeholder="Search..." value="" name="s" aria-label="Search" title="Search...">
+        <input type="hidden" name="post_type" value="page">
+        <button type="submit" class="mobilr-searchsubmit"></button>
+      </form>
+    </div>
+
+    <div class="mobile_navigations">
+      <div id="hs_cos_wrapper_navigation-primary" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+
+
+
+
+
+
+
+
+
+
+
+<nav aria-label="Main menu" class="navigation-primary">
+
+
+
+
+<ul class="submenu level-1" aria-hidden="false">
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/" class="menu-link">Home</a>
+
+
+</li>
+
+
+  
+
+<li class="has-submenu menu-item">
+<a href="javascript:;" class="menu-link">Products</a>
+
+
+<div class="child-trigger"></div>
+
+
+
+
+<ul class="submenu level-2" aria-hidden="true">
+
+  
+
+<li class="has-submenu menu-item">
+<a href="https://redpitaya.com/stemlab-125-10/" class="menu-link">STEMlab 125-10</a>
+
+
+<div class="child-trigger"></div>
+
+
+
+
+<ul class="submenu level-3" aria-hidden="true">
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/stemlab-125-14/" class="menu-link">STEMlab 125-14									 																	</a>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/signallab-250-12/" class="menu-link">SIGNALlab 250-12									 																																	</a>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/sdrlab-122-16/" class="menu-link">SDRlab 122-16									 																								 																																	</a>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/accessories/" class="menu-link">Accessories									 																								 																								 																																	</a>
+
+
+</li>
+
+
+</ul>
+
+
+</li>
+
+
+</ul>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/applications/" class="menu-link">Applications</a>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/documentation/" class="menu-link">Resources</a>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/shop/" class="menu-link">Shop</a>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/about-us/" class="menu-link">About</a>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://content.redpitaya.com/blog" class="menu-link">Blog</a>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/compare/" class="menu-link">Compare</a>
+
+
+</li>
+
+
+  
+
+<li class="no-submenu menu-item">
+<a href="https://redpitaya.com/my-account/" class="menu-link">Login / Register</a>
+
+
+</li>
+
+
+</ul>
+
+</nav></div>
+    </div>
+  </div>
+</div></div>
+      
+
+      
+<main id="main-content" class="body-container-wrapper">
+  <div class="body-container body-container--blog-post">
+
+    <div class="post_banner">
+      <div class="post_banner_conatiner">
+        <h3>Red Pitaya Blog</h3>
+        <div class="post-breadcrumbs">
+          <a href="https://redpitaya.com">Home</a> »
+          <span>
+            
+              
+                <a class="blog-post_tag-link" href="https://content.redpitaya.com/blog/tag/case-study" rel="tag">
+                  Case study
+                </a>
+              
+            
+          </span> »
+        </div>
+      </div>
+    </div>
+
+    <div class="main_post_area">
+      <div class="post-content-wrapper clearfix">
+        <div class="main_post_row clearfix">
+
+          <div class="post_left">
+            <div class="post_left_inner">
+
+              
+              <div class="blog-post_tags_post">
+                
+                  <a class="blog-tag-link" href="https://content.redpitaya.com/blog/tag/case-study" rel="tag">
+                    Case study
+                  </a>
+                
+              </div>
+              
+
+              <h1 class="blog-postss_title"><span id="hs_cos_wrapper_name" class="hs_cos_wrapper hs_cos_wrapper_meta_field hs_cos_wrapper_type_text" style="" data-hs-cos-general-type="meta_field" data-hs-cos-type="text">Hardware Fingerprinting for Cyber-Physical Systems: How an FPGA-Based Board Identifies Rogue Devices at the Physical Layer</span></h1>
+
+              
+              
+                
+              
+
+              <!-- AUTHOR LINE -->
+              <div class="post_author_name">
+                <ul>
+                  <li>
+                    Posted by
+                    
+                      <img src="https://content.redpitaya.com/hubfs/Red-pitaya-fav-ikona.png" alt="Red Pitaya Technical Editorial Team">
+                    
+
+                    
+                      <a href="https://redpitaya.com/Red-Pitaya-Blog-team/" class="post_author_display">
+                        <span class="post-author_names">
+                          Red Pitaya Technical Editorial Team
+                        </span>
+                      </a>
+                    
+
+                    
+                      <span>, October 27, 2026</span>
+                    
+                  </li>
+                </ul>
+              </div>
+              <!-- END AUTHOR LINE -->
+
+              <div class="post_featured_img_wrap ">
+                
+                <div class="post-featured-image_wraps">
+                  <img src="https://content.redpitaya.com/hubfs/blog%20featured%20image%20-%202026-10-21T104326.335.jpg" alt="">
+                </div>
+                
+              </div>
+
+              <article class="blog-post_wraps">
+
+                <div class="blog-post__body">
+
+                  <span id="hs_cos_wrapper_post_body" class="hs_cos_wrapper hs_cos_wrapper_meta_field hs_cos_wrapper_type_rich_text" style="" data-hs-cos-general-type="meta_field" data-hs-cos-type="rich_text"><p><strong><span style="line-height: 18.3458px;">Key Takeaways</span></strong><span style="background-color: #c6c6c6; line-height: 18.3458px;"> </span></p>
+<ul style="list-style-type: disc;">
+<li><strong><span style="line-height: 18.3458px;">Unclonable Physical Fingerprints:</span></strong><span style="line-height: 18.3458px;"> Manufacturing variations in output driver strength, parasitics, and clock jitter create sub-microsecond analog imperfections during digital signal transitions. These physical characteristics cannot be copied by reflashing firmware or stealing cryptographic keys. </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"> </span></li>
+<li><strong><span style="line-height: 18.3458px;">Standalone Inference Engine:</span></strong><span style="line-height: 18.3458px;"> Leveraging the Xilinx Zynq SoC on the Red Pitaya STEMlab 125-14 Pro Gen 2 allowed the team to execute signal acquisition, feature extraction, and ML classification inside a Docker container directly on the board—eliminating host PCs and benchtop oscilloscopes. </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"> </span></li>
+<li><strong><span style="line-height: 18.3458px;">99.5% Clone Identification Accuracy:</span></strong><span style="line-height: 18.3458px;"> The system achieves 99.5% accuracy in identifying individual identical-model devices and 100% accuracy in detecting device types across</span><span style="line-height: 18.3458px;"> 8 embedded development boards in the peer-reviewed baseline paper (USENIX VehicleSec 2026), and has since been extended in ongoing work to a fleet of 9 production automotive ECUs on a commercial vehicle platform.</span><span style="background-color: #c6c6c6; line-height: 18.3458px;"> </span></li>
+<li><strong><span style="line-height: 18.3458px;">High-Precision Feature Extraction:</span></strong><span style="line-height: 18.3458px;"> The pipeline extracts 211 time-domain, frequency-domain, and wavelet features from waveforms captured at 125 MS/s with 14-bit ADC resolution, focusing on rise times, slew rates, and ringing behavior. </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"> </span></li>
+<li><strong><span style="line-height: 18.3458px;">Self-Verified Measurement Chain:</span></strong><span style="line-height: 18.3458px;"> By looping the Red Pitaya's signal generator back into its input, the team verified that the board introduces less than 0.1% spectral harmonic distortion and 0.0% rise-time error, proving the captured fingerprints belong to the target device, not the instrument.</span></li>
+</ul>
+<p><span style="line-height: 18.3458px;"><!--more--></span></p>
+<p><span style="line-height: 18.3458px;"></span>Two circuit boards. Same manufacturer, same model, same firmware, sending byte-identical messages. One of them is counterfeit.</p>
+<p><span style="line-height: 18.3458px;">Nothing in the software can separate them. A cloned device carries valid credentials and looks completely legitimate to every check the system performs. </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"> </span></p>
+<p><span style="line-height: 18.3458px;">To solve this vulnerability, researchers at the Information Systems, Security, and Forensics (ISSF) Laboratory at the University of Michigan-Dearborn developed a hardware authentication framework that identifies individual embedded devices by analyzing the intrinsic analog shape of their digital switching signals. By leveraging the on-board processing and high-speed data acquisition of the </span><a href="https://redpitaya.com/product/stemlab-125-14-pro-gen-2-oem" rel="noopener" target="_blank"><strong><span style="line-height: 18.3458px;">Red Pitaya STEMlab 125-14 PRO&nbsp;Gen 2</span></strong></a><span style="line-height: 18.3458px;">, the team built an end-to-end, real-time authentication pipeline that eliminates the need for a host PC. </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"> </span></p>
+<p><span style="line-height: 18.3458px;">“You can copy firmware, a serial number, or a message. You cannot copy physics.” </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"> </span></p>
+<p><span style="line-height: 18.3458px;">&nbsp;<img width="864" height="648" src="https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-50-54-1837-AM.png?width=864&amp;height=648&amp;name=undefined-Oct-21-2026-07-50-54-1837-AM.png" style="white-space-collapse: preserve;" srcset="https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-50-54-1837-AM.png?width=432&amp;height=324&amp;name=undefined-Oct-21-2026-07-50-54-1837-AM.png 432w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-50-54-1837-AM.png?width=864&amp;height=648&amp;name=undefined-Oct-21-2026-07-50-54-1837-AM.png 864w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-50-54-1837-AM.png?width=1296&amp;height=972&amp;name=undefined-Oct-21-2026-07-50-54-1837-AM.png 1296w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-50-54-1837-AM.png?width=1728&amp;height=1296&amp;name=undefined-Oct-21-2026-07-50-54-1837-AM.png 1728w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-50-54-1837-AM.png?width=2160&amp;height=1620&amp;name=undefined-Oct-21-2026-07-50-54-1837-AM.png 2160w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-50-54-1837-AM.png?width=2592&amp;height=1944&amp;name=undefined-Oct-21-2026-07-50-54-1837-AM.png 2592w" sizes="(max-width: 864px) 100vw, 864px"> <img src="https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-50-54-1837-AM.png?width=864&amp;height=648&amp;name=undefined-Oct-21-2026-07-50-54-1837-AM.png" width="864" height="648" loading="lazy" alt="undefined-Oct-21-2026-07-50-54-1837-AM" style="height: auto; max-width: 100%; width: 864px; margin-left: auto; margin-right: auto; display: block;" srcset="https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-50-54-1837-AM.png?width=432&amp;height=324&amp;name=undefined-Oct-21-2026-07-50-54-1837-AM.png 432w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-50-54-1837-AM.png?width=864&amp;height=648&amp;name=undefined-Oct-21-2026-07-50-54-1837-AM.png 864w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-50-54-1837-AM.png?width=1296&amp;height=972&amp;name=undefined-Oct-21-2026-07-50-54-1837-AM.png 1296w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-50-54-1837-AM.png?width=1728&amp;height=1296&amp;name=undefined-Oct-21-2026-07-50-54-1837-AM.png 1728w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-50-54-1837-AM.png?width=2160&amp;height=1620&amp;name=undefined-Oct-21-2026-07-50-54-1837-AM.png 2160w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-50-54-1837-AM.png?width=2592&amp;height=1944&amp;name=undefined-Oct-21-2026-07-50-54-1837-AM.png 2592w" sizes="(max-width: 864px) 100vw, 864px"></span></p>
+<br>
+<h2>The Threat Model: When Cryptography Checks the Wrong Badge</h2>
+<p><span style="line-height: 18.3458px;">Modern vehicles contain over 100 Electronic Control Units (ECUs) communicating via CAN bus, LIN, and Ethernet. Similarly, industrial cyber-physical systems—from robotic arms on a factory floor to medical equipment—rely on embedded controllers communicating via digital ON/OFF switching signals. </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"> </span></p>
+<p><span style="line-height: 18.3458px;">Today’s security frameworks rely heavily on cryptographic authentication (such as SecOC in AUTOSAR). While cryptography effectively verifies message integrity, it cannot detect hardware-level substitution attacks. If an adversary physically replaces a legitimate ECU with an identical-model clone programmed with modified firmware and transferred credentials, the software will accept the impostor as legitimate. </span><span style="line-height: 18.3458px;"> </span></p>
+<p><span style="line-height: 18.3458px;">“Cryptography checks the badge. It has no way to check the hand holding it.” </span><span style="line-height: 18.3458px;"> </span></p>
+<p><span style="line-height: 18.3458px;">When two devices send identical digital payloads—such as byte-identical messages like 0x1A4—traditional cryptographic checks validate both as authentic because they possess the same firmware and data. However, evaluating physical-layer transients reveals clear structural differences. While a genuine ECU might exhibit a rising edge of 8.2 ns and pass verification, a counterfeit unit with an 11.4 ns rise time is immediately flagged and rejected. </span><span style="line-height: 18.3458px;"> </span></p>
+<p><span style="line-height: 18.3458px;">To answer the fundamental question—</span><em><span style="line-height: 18.3458px;">“Is this the same physical ECU that was originally installed?”</span></em><span style="line-height: 18.3458px;">—security systems must evaluate properties below the software abstraction layer.,</span></p>
+<p><span style="line-height: 18.3458px;">&nbsp;<img width="864" height="648" src="https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-52-09-9469-AM.png?width=864&amp;height=648&amp;name=undefined-Oct-21-2026-07-52-09-9469-AM.png" style="white-space-collapse: preserve;" srcset="https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-52-09-9469-AM.png?width=432&amp;height=324&amp;name=undefined-Oct-21-2026-07-52-09-9469-AM.png 432w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-52-09-9469-AM.png?width=864&amp;height=648&amp;name=undefined-Oct-21-2026-07-52-09-9469-AM.png 864w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-52-09-9469-AM.png?width=1296&amp;height=972&amp;name=undefined-Oct-21-2026-07-52-09-9469-AM.png 1296w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-52-09-9469-AM.png?width=1728&amp;height=1296&amp;name=undefined-Oct-21-2026-07-52-09-9469-AM.png 1728w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-52-09-9469-AM.png?width=2160&amp;height=1620&amp;name=undefined-Oct-21-2026-07-52-09-9469-AM.png 2160w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-52-09-9469-AM.png?width=2592&amp;height=1944&amp;name=undefined-Oct-21-2026-07-52-09-9469-AM.png 2592w" sizes="(max-width: 864px) 100vw, 864px"> <img src="https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-52-09-9469-AM.png?width=864&amp;height=648&amp;name=undefined-Oct-21-2026-07-52-09-9469-AM.png" width="864" height="648" loading="lazy" alt="undefined-Oct-21-2026-07-52-09-9469-AM" style="height: auto; max-width: 100%; width: 864px; margin-left: auto; margin-right: auto; display: block;" srcset="https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-52-09-9469-AM.png?width=432&amp;height=324&amp;name=undefined-Oct-21-2026-07-52-09-9469-AM.png 432w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-52-09-9469-AM.png?width=864&amp;height=648&amp;name=undefined-Oct-21-2026-07-52-09-9469-AM.png 864w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-52-09-9469-AM.png?width=1296&amp;height=972&amp;name=undefined-Oct-21-2026-07-52-09-9469-AM.png 1296w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-52-09-9469-AM.png?width=1728&amp;height=1296&amp;name=undefined-Oct-21-2026-07-52-09-9469-AM.png 1728w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-52-09-9469-AM.png?width=2160&amp;height=1620&amp;name=undefined-Oct-21-2026-07-52-09-9469-AM.png 2160w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-52-09-9469-AM.png?width=2592&amp;height=1944&amp;name=undefined-Oct-21-2026-07-52-09-9469-AM.png 2592w" sizes="(max-width: 864px) 100vw, 864px"></span></p>
+<h2>The Threat Model: When Cryptography Checks the Wrong Badge</h2>
+<p><span style="line-height: 18.3458px;">Modern vehicles contain over 100 Electronic Control Units (ECUs) communicating via CAN bus, LIN, and Ethernet. Similarly, industrial cyber-physical systems—from robotic arms on a factory floor to medical equipment—rely on embedded controllers communicating via digital ON/OFF switching signals. </span><span style="line-height: 18.3458px;"> </span></p>
+<p><span style="line-height: 18.3458px;">Today’s security frameworks rely heavily on cryptographic authentication (such as SecOC in AUTOSAR). While cryptography effectively verifies message integrity, it cannot detect hardware-level substitution attacks. If an adversary physically replaces a legitimate ECU with an identical-model clone programmed with modified firmware and transferred credentials, the software will accept the impostor as legitimate. </span><span style="line-height: 18.3458px;"> </span></p>
+<p><span style="line-height: 18.3458px;">“Cryptography checks the badge. It has no way to check the hand holding it.” </span><span style="line-height: 18.3458px;"> </span></p>
+<p><span style="line-height: 18.3458px;">When two devices send identical digital payloads—such as byte-identical messages like 0x1A4—traditional cryptographic checks validate both as authentic because they possess the same firmware and data. However, evaluating physical-layer transients reveals clear structural differences. While a genuine ECU might exhibit a rising edge of 8.2 ns and pass verification, a counterfeit unit with an 11.4 ns rise time is immediately flagged and rejected. </span><span style="line-height: 18.3458px;"> </span></p>
+<p><span style="line-height: 18.3458px;">To answer the fundamental question—</span><em><span style="line-height: 18.3458px;">“Is this the same physical ECU that was originally installed?”</span></em><span style="line-height: 18.3458px;">—security systems must evaluate properties below the software abstraction layer. </span></p>
+<h2>Hardware Architecture: Bridging the Acquisition &amp; Deployment Gap</h2>
+<p><span style="line-height: 18.3458px;">Historically, physical-layer hardware fingerprinting research suffered from a major deployment bottleneck: reliance on bulky laboratory bench oscilloscopes sampling at 2.5 GS/s, tethered to high-performance workstations. </span><span style="line-height: 18.3458px;"> </span></p>
+<p><span style="line-height: 18.3458px;">“Published work in this field relied on bench oscilloscopes running at 2.5 GS/s, tethered to a workstation. That is exactly why none of it ever reached a vehicle.” </span><span style="line-height: 18.3458px;"> </span></p>
+<p><span style="line-height: 18.3458px;">To build a field-deployable system, the UM-Dearborn researchers selected the </span><strong><span style="line-height: 18.3458px;">Red Pitaya STEMlab 125-14 PRO Gen 2</span></strong><span style="line-height: 18.3458px;"> running in high-voltage mode. By organizing the acquisition and processing system around the Red Pitaya's internal hardware architecture, the team created a self-contained pipeline. The board's analog front-end uses dual 14-bit ADCs sampling at 125 MS/s to feed digitized signals into a deep DMA buffer (capable of storing 16,000 to 2,000,000 samples) within the FPGA fabric. From there, data streams directly into the dual-core ARM Cortex-A9 processor running an embedded Linux environment inside a Docker container to perform real-time machine learning inference. </span><span style="line-height: 18.3458px;"> </span></p>
+<div style="white-space-collapse: preserve;">
+<h2>Key Technical Specifications &amp; Selection Factors</h2>
+<ul style="list-style-type: disc;">
+<li><strong><span style="line-height: 18.3458px;">Integrated Compute &amp; Acquisition:</span></strong><span style="line-height: 18.3458px;"> The AMD Xilinx Zynq-7010 All Programmable SoC pairs a dual-core ARM processor directly with the FPGA logic and ADCs. This allowed the team to execute signal capture, feature extr</span><span style="line-height: 18.3458px;">action, and machine learning inference directly on the board inside a Docker container, using a host PC during the enrollment phase, but running standalone inference directly on the Red Pitaya.</span><span style="line-height: 18.3458px;"></span></li>
+<li><strong><span style="line-height: 18.3458px;">125 MS/s Sample Rate (8 ns Resolution):</span></strong><span style="line-height: 18.3458px;"> The transient features live in the first few hundred nanoseconds after a switching edge. At 125 MS/s, the STEMlab captures roughly 190 samples across a typical transient window, providing sufficient resolution to characterize overshoot and ringing dynamics. </span><span style="line-height: 18.3458px;"></span></li>
+<li><strong><span style="line-height: 18.3458px;">14-Bit ADC Resolution:</span></strong><span style="line-height: 18.3458px;"> Same-model clone devices exhibit millivolt-scale differences. Lower-resolution 12-bit ADCs compress away these critical analog variations. </span><span style="line-height: 18.3458px;"></span></li>
+<li><strong><span style="line-height: 18.3458px;">Deep DMA Capture:</span></strong><span style="line-height: 18.3458px;"> Capturing up to 2 million samples per trigger at 125 MS/s yields a 16-millisecond window, enabling the continuous acquisition of complete automotive CAN frames without dropping samples. </span><span style="line-height: 18.3458px;"></span></li>
+<li><strong><span style="line-height: 18.3458px;">Synchronized Dual Channels:</span></strong><span style="line-height: 18.3458px;"> Automotive CAN is a differential bus (CAN_H and CAN_L). Synchronous dual-channel acquisition allows analysis of individual lines separately as well as the differential signal, revealing driver asymmetry that standard differential receivers cancel out. </span><span style="line-height: 18.3458px;"></span></li>
+<li><strong><span style="line-height: 18.3458px;">High-Voltage Mode:</span></strong><span style="line-height: 18.3458px;"> Enables direct probing of standard logic levels and automotive bus voltages without needing external attenuation circuits that degrade signal fidelity. </span><span style="line-height: 18.3458px;"></span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span><br><br><img src="https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-56-35-6366-AM.png?width=864&amp;height=576&amp;name=undefined-Oct-21-2026-07-56-35-6366-AM.png" width="864" height="576" loading="lazy" alt="undefined-Oct-21-2026-07-56-35-6366-AM" style="height: auto; max-width: 100%; width: 864px; margin-left: auto; margin-right: auto; display: block;" srcset="https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-56-35-6366-AM.png?width=432&amp;height=288&amp;name=undefined-Oct-21-2026-07-56-35-6366-AM.png 432w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-56-35-6366-AM.png?width=864&amp;height=576&amp;name=undefined-Oct-21-2026-07-56-35-6366-AM.png 864w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-56-35-6366-AM.png?width=1296&amp;height=864&amp;name=undefined-Oct-21-2026-07-56-35-6366-AM.png 1296w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-56-35-6366-AM.png?width=1728&amp;height=1152&amp;name=undefined-Oct-21-2026-07-56-35-6366-AM.png 1728w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-56-35-6366-AM.png?width=2160&amp;height=1440&amp;name=undefined-Oct-21-2026-07-56-35-6366-AM.png 2160w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-56-35-6366-AM.png?width=2592&amp;height=1728&amp;name=undefined-Oct-21-2026-07-56-35-6366-AM.png 2592w" sizes="(max-width: 864px) 100vw, 864px"></li>
+</ul>
+<h2>Signal Processing &amp; Feature Extraction Pipeline</h2>
+<p><span style="line-height: 18.3458px;">The authentication system operates across two main operational phases: an </span><strong><span style="line-height: 18.3458px;">Enrollment Phase</span></strong><span style="line-height: 18.3458px;"> and an </span><strong><span style="line-height: 18.3458px;">Authentication Phase</span></strong><span style="line-height: 18.3458px;">. During enrollment, target devices generate a 1 MHz PWM stimulus while connected to a host PC monitoring setup. The Red Pitaya STEMlab 125-14 captures a 16,384-sample window per trigger, extracts a 211-dimensional feature vector, and populates the enrollment database with trained models. During the authentication phase, an unknown input device undergoes the exact same capture and extraction steps directly on the Red Pitaya. </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"> </span></p>
+<p><span style="line-height: 18.3458px;">The 211-dimensional feature vector combines two complementary extraction methods: </span></p>
+<p><span style="line-height: 18.3458px;"><strong>1. Cycle-Based Features (94 Features):</strong> Extracts metrics per switching cycle across five categories: timing (rise time </span><span style="vertical-align: 0px; line-height: normal; width: 105px;"><span style="vertical-align: 0px; line-height: normal; width: 105px; height: 0px;"><span style="vertical-align: 0px; line-height: normal; width: 105px;"><span style="vertical-align: 0px; line-height: normal;"><span style="vertical-align: 0px; line-height: normal;"><span style="vertical-align: 0px; line-height: normal; width: 0.731em; height: 0px;"><span style="vertical-align: 0px; line-height: normal;"><span style="vertical-align: 0px; line-height: normal;">t</span><span style="white-space-collapse: preserve; vertical-align: 0px; line-height: normal; height: 4.008em;"></span></span><span style="vertical-align: 0px; line-height: normal;"><sub><span style="vertical-align: 0px; line-height: normal;">r</span></sub><span style="white-space-collapse: preserve; vertical-align: 0px; line-height: normal; height: 4.008em;"></span></span></span></span><span style="vertical-align: 0px; line-height: normal;">=</span><span style="vertical-align: 0px; line-height: normal;"><span style="vertical-align: 0px; line-height: normal; width: 1.763em; height: 0px;"><span style="vertical-align: 0px; line-height: normal;"><span style="vertical-align: 0px; line-height: normal;">t</span><span style="white-space-collapse: preserve; vertical-align: 0px; line-height: normal; height: 4.008em;"></span></span><span style="vertical-align: 0px; line-height: normal;"><sub><span style="vertical-align: 0px; line-height: normal;"><span style="vertical-align: 0px; line-height: normal;">90</span><span style="vertical-align: 0px; line-height: normal;">%</span></span></sub><span style="white-space-collapse: preserve; vertical-align: 0px; line-height: normal; height: 4.008em;"></span></span></span></span><span style="vertical-align: 0px; line-height: normal;">−</span><span style="vertical-align: 0px; line-height: normal;"><span style="vertical-align: 0px; line-height: normal; width: 1.763em; height: 0px;"><span style="vertical-align: 0px; line-height: normal;"><span style="vertical-align: 0px; line-height: normal;">t</span><span style="white-space-collapse: preserve; vertical-align: 0px; line-height: normal; height: 4.008em;"></span></span><span style="vertical-align: 0px; line-height: normal;"><sub><span style="vertical-align: 0px; line-height: normal;"><span style="vertical-align: 0px; line-height: normal;">10</span><span style="vertical-align: 0px; line-height: normal;">%</span></span></sub></span></span></span></span></span></span></span>, duty cycle), shape (overshoot amplitude, ringing frequency), edge transitions, stability, and aggregate statistics. <span style="background-color: #c6c6c6; white-space-collapse: preserve; line-height: 18.3458px;"></span></p>
+<p><strong><span style="line-height: 18.3458px;">2. Enhanced Global Features (117 Features):</span></strong><span style="line-height: 18.3458px;"> Captures holistic signal characteristics using time-domain statistics (15 features), Discrete Wavelet Transform (Daubechies-4, 18 features), statistical moments (24 features), frequency-domain spectral centroids (42 features), and edge analysis (18 features). </span><span style="background-color: #c6c6c6; white-space-collapse: preserve; line-height: 18.3458px;"></span></p>
+<p><span style="line-height: 18.3458px;"><span>Feature importance analysis showed that transition timing features—specifically </span><span>rise</span><span> time, fall time, and their statistical moments—accounted for 6 of the top 10 discriminative features. </span> </span></p>
+<h2>Experimental Results: Distinguishing Identical Clones</h2>
+<p><span style="line-height: 18.3458px;">The framework was evaluated across 8 embedded devices spanning 4 distinct hardware families (Arduino UNO R3, Elegoo UNO R3, STM32F4 Discovery, and Analog Discovery 3), explicitly including same-model clone pairs. </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"> </span></p>
+<p><span style="line-height: 18.3458px;">Under controlled mounting conditions using non-conductive standoffs, the real-time device identification accuracy reached </span><strong><span style="line-height: 18.3458px;">99.5%</span></strong><span style="line-height: 18.3458px;"> (and </span><strong><span style="line-height: 18.3458px;">93.6%</span></strong><span style="line-height: 18.3458px;"> without controlled mounting). Across all tests, the device hardware type classification accuracy remained at </span><strong><span style="line-height: 18.3458px;">100.0%</span></strong><span style="line-height: 18.3458px;">. </span></p>
+<h2>Machine Learning Classification Strategy</h2>
+<p><span style="line-height: 18.3458px;">The framework employs a two-stage hybrid classifier:</span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span></p>
+<ul style="list-style-type: disc;">
+<li><strong><span style="line-height: 18.3458px;">Stage 1 (Hardware Type Routing):</span></strong><span style="line-height: 18.3458px;"> Classifies the incoming waveform by hardware architecture with 100% accuracy (e.g., correctly routing an input to the "Arduino" type label). </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span><br><strong><span style="line-height: 18.3458px;">Stage 2 (Specific Device Identification):</span></strong><span style="line-height: 18.3458px;"> Routes the feature vector to specialized models:</span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span>
+<ul style="list-style-type: circle;">
+<li><strong><span style="line-height: 18.3458px;">Approach A (Random Forest):</span></strong><span style="line-height: 18.3458px;"> Optimized for low-variance microcontroller platforms (e.g., ATmega328P pairs) using 94 cycle-based features. </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span></li>
+<li><strong><span style="line-height: 18.3458px;">Approach B (Stacked One-vs-All Ensemble):</span></strong><span style="line-height: 18.3458px;"> Optimized for complex multi-core platforms using the full 211-feature space. </span><span style="line-height: 18.3458px;"></span></li>
+</ul>
+</li>
+</ul>
+<p><span style="line-height: 18.3458px;">If the model returns a confidence score meeting or exceeding the threshold, it outputs a verified device identity (e.g., Device D1). If the confidence score falls below the threshold, the system gracefully degrades to reporting the guaranteed hardware type label (e.g., "Arduino - Unknown Device") rather than misidentifying an individual board. This method was subsequently validated on a fleet of 9 electrically identical production automotive ECUs from a commercial vehicle platform. </span></p>
+<h2>Measurement Chain Self-Verification</h2>
+<p><span style="line-height: 18.3458px;">A primary challenge in analog fingerprinting is proving that the system measures the device under test rather than artifacts of the acquisition instrument. </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span></p>
+<p><span style="line-height: 18.3458px;">To verify measurement integrity, the team utilized the Red Pitaya’s built-in signal generator, looping Output 1 (OUT1) directly back into Input 2 (IN2). By measuring how much the acquisition path distorted a known synthesized signal, the team confirmed that all key diagnostic features were preserved: </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span></p>
+<ul style="list-style-type: disc;">
+<li><strong><span style="line-height: 18.3458px;">Rise Time Distortion:</span></strong><span style="line-height: 18.3458px;"> 0.0% </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span></li>
+<li><strong><span style="line-height: 18.3458px;">Spectral Harmonics Distortion:</span></strong><span style="line-height: 18.3458px;"> &lt; 0.1% </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span></li>
+<li><strong><span style="line-height: 18.3458px;">Overall Feature Preservation:</span></strong><span style="line-height: 18.3458px;"> Within 1.0% of nominal </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span></li>
+</ul>
+<p><span style="line-height: 18.3458px;">Having an integrated signal generator and high-speed digitizer on a single board simplified instrument self-calibration, avoiding the need for external reference sources. </span></p>
+<h2>The Path Forward: Supply Chain &amp; Vehicular Security</h2>
+<p><span style="line-height: 18.3458px;">The ability to perform non-invasive, physical-layer authentication using a compact, low-cost platform like the Red Pitaya STEMlab 125-14 opens new possibilities for embedded cybersecurity:</span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span></p>
+<ol style="list-style-type: decimal;">
+<li><strong><span style="line-height: 18.3458px;">In-Vehicle Intrusion Prevention Systems (IPS):</span></strong><span style="line-height: 18.3458px;"> Integrating compact digitizers into automotive gateway modules to continuously authenticate ECUs on the CAN bus. </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span></li>
+<li><strong><span style="line-height: 18.3458px;">Electronics Supply Chain Verification:</span></strong><span style="line-height: 18.3458px;"> Detecting counterfeit, recycled, or cloned integrated circuits during manufacturing commissioning without requiring firmware modifications or internal silicon PUFs. </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span></li>
+<li><strong><span style="line-height: 18.3458px;">Robotics &amp; Critical Infrastructure:</span></strong><span style="line-height: 18.3458px;"> Authenticating actuators, Electronic Speed Controllers (ESCs) in UAVs, and industrial PLCs directly at their physical interfaces. </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span></li>
+</ol>
+<p><span style="line-height: 18.3458px;">By moving the entire machine learning inference pipeline directly onto the ARM processor of the acquisition board, this research demonstrates that physical-layer device fingerprinting can transition from a benchtop laboratory concept into a field-deployable security layer. </span></p>
+<h2>Research Reference &amp; Full Technical Paper</h2>
+<p><span style="line-height: 18.3458px;">This research was led by </span><strong><span style="line-height: 18.3458px;">Abbas Ali</span></strong><span style="line-height: 18.3458px;">, PhD student at the University of Michigan-Dearborn, working alongside Prof. Hafiz Malik in the </span><strong><span style="line-height: 18.3458px;">Information Systems, Security, and Forensics (ISSF) Laboratory</span></strong><span style="line-height: 18.3458px;">. </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span></p>
+<p><span style="line-height: 18.3458px;">Their paper, </span><em><span style="line-height: 18.3458px;">"</span></em><a href="https://www.usenix.org/system/files/vehiclesec26-ali.pdf" rel="noopener" target="_blank"><em><u><span style="line-height: 18.3458px;">Short: Is Your ECU Really Yours</span></u></em></a><em><span style="line-height: 18.3458px;">?"</span></em><span style="line-height: 18.3458px;">, was presented at the </span><strong><span style="line-height: 18.3458px;">4th USENIX Symposium on Vehicle Security and Privacy (VehicleSec 2026)</span></strong><span style="line-height: 18.3458px;"> in Baltimore, MD. </span><span style="line-height: 18.3458px;">The complete technical paper, open-access proceedings, and presentation slides are available directly on the<a href="https://www.usenix.org/conference/vehiclesec26/presentation/ali" rel="noopener" target="_blank">USENIX page</a>. Furthermore, the paper earned all three USENIX Artifact Badges (Available, Functional, Reproduced). To support open security research, the complete dataset of 48,000 raw waveforms (2.6 GB), pre-extracted 211-D feature CSVs, pre-trained machine learning models, and Jupyter evaluation notebooks are publicly archived on Zenodo (DOI: 10.5281/zenodo.19666939).</span></p>
+<p><span style="line-height: 18.3458px;"></span><span style="line-height: 18.3458px;"><img src="https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-58-07-2015-AM.png?width=864&amp;height=576&amp;name=undefined-Oct-21-2026-07-58-07-2015-AM.png" width="864" height="576" loading="lazy" alt="undefined-Oct-21-2026-07-58-07-2015-AM" style="height: auto; max-width: 100%; width: 864px; margin-left: auto; margin-right: auto; display: block;" srcset="https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-58-07-2015-AM.png?width=432&amp;height=288&amp;name=undefined-Oct-21-2026-07-58-07-2015-AM.png 432w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-58-07-2015-AM.png?width=864&amp;height=576&amp;name=undefined-Oct-21-2026-07-58-07-2015-AM.png 864w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-58-07-2015-AM.png?width=1296&amp;height=864&amp;name=undefined-Oct-21-2026-07-58-07-2015-AM.png 1296w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-58-07-2015-AM.png?width=1728&amp;height=1152&amp;name=undefined-Oct-21-2026-07-58-07-2015-AM.png 1728w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-58-07-2015-AM.png?width=2160&amp;height=1440&amp;name=undefined-Oct-21-2026-07-58-07-2015-AM.png 2160w, https://content.redpitaya.com/hs-fs/hubfs/undefined-Oct-21-2026-07-58-07-2015-AM.png?width=2592&amp;height=1728&amp;name=undefined-Oct-21-2026-07-58-07-2015-AM.png 2592w" sizes="(max-width: 864px) 100vw, 864px"></span></p>
+<h2>ECU Fingerprinting &amp; Physical-Layer Security FAQ </h2>
+<h3><span style="font-size: 20px;"><strong><span style="line-height: 18.3458px;">Why is cryptographic authentication insufficient for preventing ECU cloning?</span></strong></span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span></h3>
+<p><span style="line-height: 18.3458px;">Cryptography verifies that a message carries a valid signature or token, but it cannot verify the physical origin of the signal. If an attacker clones an ECU's firmware and cryptographic credentials onto counterfeit hardware, software-level checks accept the impostor as legitimate. Physical-layer fingerprinting checks the hardware itself.</span></p>
+<h3><span style="font-size: 20px;"><strong><span style="line-height: 18.3458px;">Why was the Red Pitaya STEMlab 125-14 selected over traditional bench oscilloscopes?</span></strong><span style="line-height: 18.3458px;"> </span></span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span></h3>
+<p><span style="line-height: 18.3458px;">Bench oscilloscopes sampling at 2.5 GS/s are expensive and require a tethered host workstation, making vehicle or field deployment impossible. The Red Pitaya combines 14-bit 125 MS/s ADCs with an onboard ARM processor, enabling high-resolution signal capture and real-time ML inference on a single, hand-sized board. </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span></p>
+<h3><span style="font-size: 20px;"><strong><span style="line-height: 18.3458px;">Does this framework require modifying ECU firmware or connecting to internal chip states?</span></strong><span style="line-height: 18.3458px;"> </span></span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span></h3>
+<p><span style="line-height: 18.3458px;">No. The system operates completely non-invasively by probing digital lines (such as GPIO toggles or CAN bus lines) during normal operation. It requires no firmware modifications, internal SRAM reads, or custom silicon modifications. </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span></p>
+<h3 style="font-size: 20px;"><strong><span style="line-height: 18.3458px;">How does the system handle differential signals like CAN_H and CAN_L?</span></strong><span style="line-height: 18.3458px;"> </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span></h3>
+<p><span style="line-height: 18.3458px;">Using the STEMlab’s two synchronized input channels, the system captures CAN_H and CAN_L simultaneously. Analyzing each line individually alongside the differential signal reveals output driver asymmetries that standard differential receivers filter out, providing richer fingerprint features. </span><span style="background-color: #c6c6c6; line-height: 18.3458px;"></span></p>
+<div style="white-space-collapse: preserve;">&nbsp;</div>
+</div></span>
+
+                  <!-- ABOUT RED PITAYA TEAM (ONLY FOR TEAM POSTS) -->
+                  
+                  <div class="post-author-bio post-author-bio--team">
+                    <h3>About the Red Pitaya Team</h3>
+                    <p>
+                      The Red Pitaya Technical Editorial Team is a cross-functional group of technical communicators and product specialists. By synthesizing insights from our hardware developers and global research partners, we provide verified, high-value content that bridges the gap between open-source innovation and industrial-grade precision.
+                    </p>
+                    <p>
+                      Our mission is to make advanced instrumentation accessible to engineers, researchers, and educators worldwide.
+                    </p>
+                  </div>
+                  
+                  <!-- END ABOUT AUTHOR -->
+
+                </div>
+
+                <div class="post_socials">
+                  <div class="post-wd-social-icons">
+                    <a onclick="window.open('http://www.facebook.com/sharer/sharer.php?u=https://content.redpitaya.com/blog/hardware-fingerprinting-red-pitaya-cyber-physical-security')"></a>
+                    <a onclick="window.open('https://twitter.com/home?status=https://content.redpitaya.com/blog/hardware-fingerprinting-red-pitaya-cyber-physical-security')"></a>
+                    <a onclick="window.open('http://www.linkedin.com/shareArticle?mini=true&amp;url=https://content.redpitaya.com/blog/hardware-fingerprinting-red-pitaya-cyber-physical-security')"></a>
+                  </div>
+                </div>
+
+              </article>
+            </div>
+          </div>
+
+          <div class="post_right">
+            <div class="post_right_inner">
+              <div id="hs_cos_wrapper_blog-topic-list" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div class="blog_categories">
+
+  <div class="categories_title">
+    <h5>Categories</h5>
+  </div>
+  <div class="blog-sidebar">
+    
+    
+    
+    
+    <div class="categories-list">
+      <ul>
+        
+        <li>
+          <a href="https://content.redpitaya.com/blog/tag/academia">academia <span class="filter-link-count" dir="ltr">(47)</span></a>
+        </li>
+      
+    </ul>
+    </div>
+    
+  </div>
+</div></div>
+              <div id="hs_cos_wrapper_blog-recent-posts" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div class="recent_items">
+<div class="recent_Title">
+ <h5>Recent Posts </h5>
+  </div>
+<ul class="cm-recent-blog-wrapper">
+  <!-- Set the max number of recent posts to be output to the page here -->
+  
+  
+  
+  
+  
+  <li class="recent-post-item">
+    <a class="recent_img" href="https://content.redpitaya.com/blog/end-of-life-notice-stemlab-125-14-original-generation-boards-gen-2-migration-guide">
+      
+      <div class="recent-hs-featured-image-wrapper">
+        <img src="https://content.redpitaya.com/hs-fs/hubfs/blog%20featured%20image%20-%202026-10-29T142922.065.jpg?width=767&amp;name=blog%20featured%20image%20-%202026-10-29T142922.065.jpg" class="recent-hs-featured-image" alt="End of Life Notice: STEMlab 125-14 Original-Generation Boards &amp; Gen 2 Migration Guide">
+      </div>
+      
+    </a>
+
+    <div class="recent-posts-info">
+      <div class="recent-post-titles"> <a href="https://content.redpitaya.com/blog/end-of-life-notice-stemlab-125-14-original-generation-boards-gen-2-migration-guide">End of Life Notice: STEMlab 125-14 Original-Generation Boards &amp; Gen 2 Migration Guide</a></div>
+      <div class="recent_dates">
+        October 29, 2026
+      </div>
+    </div>
+
+
+  </li>
+            
+  
+  
+  
+  
+  
+  <li class="recent-post-item">
+    <a class="recent_img" href="https://content.redpitaya.com/blog/experimenting-with-red-pitaya-stemlab-gen-2-book">
+      
+      <div class="recent-hs-featured-image-wrapper">
+        <img src="https://content.redpitaya.com/hs-fs/hubfs/blog%20featured%20image%20-%202026-08-24T121540.868.jpg?width=767&amp;name=blog%20featured%20image%20-%202026-08-24T121540.868.jpg" class="recent-hs-featured-image" alt="What’s Inside Experimenting with Red Pitaya STEMlab Gen 2?">
+      </div>
+      
+    </a>
+
+    <div class="recent-posts-info">
+      <div class="recent-post-titles"> <a href="https://content.redpitaya.com/blog/experimenting-with-red-pitaya-stemlab-gen-2-book">What’s Inside Experimenting with Red Pitaya STEMlab Gen 2?</a></div>
+      <div class="recent_dates">
+        October 20, 2026
+      </div>
+    </div>
+
+
+  </li>
+            
+  
+  
+  
+  <li class="recent-post-item">
+    <a class="recent_img" href="https://content.redpitaya.com/blog/red-pitaya-input-impedance-50-ohm-high-z">
+      
+      <div class="recent-hs-featured-image-wrapper">
+        <img src="https://content.redpitaya.com/hs-fs/hubfs/Input%20impedance%201920%C3%971000@1x.png?width=767&amp;name=Input%20impedance%201920%C3%971000@1x.png" class="recent-hs-featured-image" alt="Why Is My Signal Voltage Doubled? Understanding Red Pitaya Input Impedance &amp; 50 ΩTermination">
+      </div>
+      
+    </a>
+
+    <div class="recent-posts-info">
+      <div class="recent-post-titles"> <a href="https://content.redpitaya.com/blog/red-pitaya-input-impedance-50-ohm-high-z">Why Is My Signal Voltage Doubled? Understanding Red Pitaya Input Impedance &amp; 50&nbsp;ΩTermination</a></div>
+      <div class="recent_dates">
+        October 12, 2026
+      </div>
+    </div>
+
+
+  </li>
+            
+  
+  
+</ul>
+
+</div></div>
+              <div id="hs_cos_wrapper_blog-subscription-form" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div class="subscription_form">
+  <div class="sub_inner">
+  <div class="subscription_form_title">
+    <h5>Subscribe to our newsletter</h5>
+  </div> 
+
+  <div class="subscrip_form_wrapper">
+    <span id="hs_cos_wrapper_blog-subscription-form_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_form" style="" data-hs-cos-general-type="widget" data-hs-cos-type="form"><h3 id="hs_cos_wrapper_blog-subscription-form__title" class="hs_cos_wrapper form-title" data-hs-cos-general-type="widget_field" data-hs-cos-type="text"></h3>
+
+<div id="hs_form_target_blog-subscription-form_"></div>
+
+
+
+
+
+
+
+
+
+</span> 
+  </div>
+</div>
+</div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+
+      
+        <div data-global-resource-path="Red_Pitaya_November_2021/templates/partials/footer.html"><footer class="footer">
+  <div class="footer_container">
+    <div class="footer_sidebar">
+
+      <div class="footer_column1">
+        <div class="footer_text">
+          <div class="footer_logo">
+            <div id="hs_cos_wrapper_footer_logo" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-linked_image" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+    
+
+
+
+
+
+
+  
+
+
+
+<span id="hs_cos_wrapper_footer_logo_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_linked_image" style="" data-hs-cos-general-type="widget" data-hs-cos-type="linked_image"><img src="https://content.redpitaya.com/hubfs/raw_assets/public/Red_Pitaya_November_2021/images/redpitaya-logo-wh.svg" class="hs-image-widget " style="width:180px;border-width:0px;border:0px;" width="180" alt="Red Pitaya" title="Red Pitaya"></span></div>
+          </div> 
+
+          <div class="logo_text">
+            <div id="hs_cos_wrapper_footer_logo_text" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-rich_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><span id="hs_cos_wrapper_footer_logo_text_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><p>An open-source solution for hobbyists, professors,<br> radio amateurs and industrial clients. </p></span></div>
+          </div>
+
+
+          <div class="footer_address">
+
+            <div id="hs_cos_wrapper_footer_adress" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-rich_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><span id="hs_cos_wrapper_footer_adress_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><p><i class="fa fa-location-arrow"></i><span style="color: #ffffff;"><strong>Red Pitaya</strong></span><br><span style="color: #ffffff;">Velika pot 21,</span><br><span style="color: #ffffff;">5250 Solkan</span><br><span style="color: #ffffff;">Slovenia, Europe</span><br><span style="color: #ffffff;"><span data-hs-icon-hubl="true" style="display: inline-block; fill: #33475B;"><span id="hs_cos_wrapper_footer_adress_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_icon" style="" data-hs-cos-general-type="widget" data-hs-cos-type="icon"><svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512" height="14" aria-hidden="true"><g id="Phone1_layer"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" /></g></svg></span></span>Phone: +386 30 322 719</span><br><span style="color: #ffffff;"><span data-hs-icon-hubl="true" style="display: inline-block; fill: #33475B;"><span id="hs_cos_wrapper_footer_adress_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_icon" style="" data-hs-cos-general-type="widget" data-hs-cos-type="icon"><svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512" height="14" aria-hidden="true"><g id="Envelope2_layer"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z" /></g></svg></span></span>Email:&nbsp;<a href="mailto:info@redpitaya.com" style="color: #ffffff; text-decoration: underline;">info@redpitaya.com</a></span></p>
+<p><span style="color: #ffffff;"><strong>Red Pitaya US</strong></span><br><span style="color: #ffffff;">TX, Dallas - Downtown Republic Center</span><br><span style="color: #ffffff;">325 N. St. Paul Street</span><br><span style="color: #ffffff;">Suite 3100</span><br><span style="color: #ffffff;">Dallas, Texas, 75202</span><br><span style="color: #ffffff;">United States of America</span><br><span style="color: #ffffff;">IMPORTANT: This address does not accept RMAs</span><br><span style="color: #ffffff;"><span data-hs-icon-hubl="true" style="display: inline-block; fill: #33475B;"><span id="hs_cos_wrapper_footer_adress_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_icon" style="" data-hs-cos-general-type="widget" data-hs-cos-type="icon"><svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512" height="14" aria-hidden="true"><g id="Phone3_layer"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" /></g></svg></span></span>Phone: (888) 637-2706</span><br><span style="color: #ffffff;"><span data-hs-icon-hubl="true" style="display: inline-block; fill: #33475B;"><span id="hs_cos_wrapper_footer_adress_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_icon" style="" data-hs-cos-general-type="widget" data-hs-cos-type="icon"><svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512" height="14" aria-hidden="true"><g id="Envelope4_layer"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z" /></g></svg></span></span>Email:&nbsp;<a href="mailto:US.office@redpitaya.com" style="color: #ffffff;">US.office@redpitaya.com</a></span></p></span></div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="footer_column2">
+        <div class="footer_navigation">
+          <span id="hs_cos_wrapper_footer_menu" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_menu" style="" data-hs-cos-general-type="widget" data-hs-cos-type="menu"><div id="hs_menu_wrapper_footer_menu" class="hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal" role="navigation" data-sitemap-name="default" data-menu-id="58769333072" aria-label="Navigation Menu">
+ <ul role="menu">
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Customer Service</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://redpitaya.com/customer-support/" role="menuitem">Customer Support</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://redpitaya.com/shipping-returns/" role="menuitem">Shipping &amp; Returns</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://redpitaya.com/contact-us/" role="menuitem">Contact us</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://redpitaya.com/cookie-policy/" role="menuitem">Cookie Policy</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">SLO</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://redpitaya.com/o-nas/" role="menuitem">O nas</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://redpitaya.com/pogoji-poslovanja/" role="menuitem">Pogoji poslovanja</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://redpitaya.com/politika-zasebnosti/" role="menuitem">Politika zasebnosti</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://redpitaya.com/politika-piskotkov/" role="menuitem">Politika piškotkov</a></li>
+   </ul></li>
+ </ul>
+</div></span>
+        </div>
+      </div>
+
+      <div class="footer_column3">
+        <div class="footer_title">
+          <div id="hs_cos_wrapper_footer_follow_us" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-rich_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><span id="hs_cos_wrapper_footer_follow_us_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><h5>Follow Us</h5></span></div>
+        </div>
+
+        <div class="social_container">
+          <div class="social_container_inner">
+            <div class="social_section">
+              <div id="hs_cos_wrapper_footer-social-follow" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div class="footer_social_items">
+  <div class="social_con">
+    <div class="social_icon_wrapper">
+      <span class="socials_items">
+        
+        
+        
+        
+        
+        
+        
+        <a href="https://www.facebook.com/redpitayaspark/" target="_blank" rel="noopener">
+          <i class="fab fa-facebook"></i>
+        </a>
+
+
+      </span>
+      <span class="socials_items">
+
+        
+        
+        
+        
+        
+        
+        
+        <a href="https://twitter.com/RedPitayaCom" target="_blank" rel="noopener">
+          <i class="fab fa-twitter"></i>
+        </a>
+
+      </span>
+      <span class="socials_items">
+        
+        
+        
+        
+        
+        
+        
+        <a href="https://www.youtube.com/c/RedPitayaTV" target="_blank" rel="noopener">
+          <i class="fab fa-youtube"></i>
+        </a>
+
+      </span>
+      <span class="socials_items">
+ 
+        
+        
+        
+        
+        
+        
+        
+        <a href="https://www.linkedin.com/company/red-pitaya" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </span>
+      <span class="socials_items">
+        
+        
+        
+        
+        
+        
+        
+        <a href="https://www.instagram.com/redpitayacom" target="_blank" rel="noopener">
+          <i class="fab fa-instagram"></i>
+        </a>
+
+      </span>
+
+    </div>
+  </div>  
+</div></div>
+            </div>
+
+            <div class="sub_section">
+              <div class="sub_container">
+                <div id="hs_cos_wrapper_footer_subsribe" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-rich_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><span id="hs_cos_wrapper_footer_subsribe_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><h4>Subscribe to our newsletter </h4></span></div>
+              </div>
+            </div>
+            <div class="sub_container_text">
+              <div id="hs_cos_wrapper_footer_subsribe_text" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-rich_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><span id="hs_cos_wrapper_footer_subsribe_text_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><p>Get notified about new SW features &amp; updates, news about latest community projects &amp; events and new Red Pitaya products &amp; discounts</p></span></div>
+            </div>
+
+            <div class="sub_container_button">
+              <div id="hs_cos_wrapper_sign_up_sub" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+  
+
+
+
+  
+    
+  
+
+
+
+<a class="hs-button" href="https://go.redpitaya.com/cs/c/?cta_guid=36ccbdc0-0344-49c4-aa91-aa67cf437c09&amp;signature=AAH58kHkxFYTAKU-ILQzHI1jlrdI_co0RA&amp;placement_guid=a24cb732-1dfb-4d0a-8c52-aa6851ce9102&amp;click=556cfaee-eee4-48e4-95e7-c483a4f78883&amp;hsutk=537e15e740555d2fd6a1c1ad931d2b6f&amp;canon=https%3A%2F%2Fredpitaya.com%2Fabout-us%2F&amp;utm_referrer=https%3A%2F%2Fredpitaya.com%2Fcompare%2F&amp;portal_id=7715357&amp;redirect_url=APefjpGj5Dm9poAAzHFGh4S6pJ-2TvNzBdwZZlfbr7toxfw-epFUtzEHOKToHx0i2TYYr39srj9aSERdntJBh8lJqoSXL-pUF2gwhYvOW6IMm28hQVmhYML2AIbbIRrr3YaoyJkZQ0iRxq-uHlFt66i3_8XpQpXT_M2zF9fS7t0f6hlBjGBJ7X_aXDrhBwXcEAqwoWWleG4uxonSGOR-BBp3tpKcySXYELTGHeGn5Yo61r3xrFvqFP5P6BxVwxTi51_ceW9uBzOMvA1rYz4BsIhLSF8n4bhcHqJTvhibH_laJrjDNdEUUrU&amp;__hstc=72355340.537e15e740555d2fd6a1c1ad931d2b6f.1635738083317.1635738083317.1635746314170.2&amp;__hssc=72355340.5.1635746314170&amp;__hsfp=530052575&amp;contentType=standard-page" id="hs-button_sign_up_sub" rel="">
+  Subscribe
+</a>
+
+</div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <div class="footer_copyright">
+    <div class="copyright_container">
+      <div class="copyright_main">
+        <div class="copyright_left">
+          <div class="copyright_item">
+            <div id="hs_cos_wrapper_footer_copyright" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-rich_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><span id="hs_cos_wrapper_footer_copyright_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><small>
+<a href="javascript:void(0)"><strong>Red Pitaya</strong></a> <i class="fa fa-copyright"></i> 2025 All Rights Reserved. 
+</small></span></div>
+          </div>
+        </div> 
+        <div class="copyright_right">
+          <span id="hs_cos_wrapper_footer_copyright_menu" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_menu" style="" data-hs-cos-general-type="widget" data-hs-cos-type="menu"><div id="hs_menu_wrapper_footer_copyright_menu" class="hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal" role="navigation" data-sitemap-name="default" data-menu-id="58771684097" aria-label="Navigation Menu">
+ <ul role="menu">
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="https://redpitaya.com/privacy-policy/" role="menuitem">Privacy Policy</a></li>
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="https://redpitaya.com/terms-of-use/" role="menuitem">Terms of Use</a></li>
+ </ul>
+</div></span>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+<a href="#" class="back_to_top"></a></div>
+      
+    </div>
+    
+     
+     
+         
+
+    
+    <script src="/hs/hsstatic/jquery-libs/static-1.4/jquery/jquery-1.11.2.js"></script>
+<script>hsjQuery = window['jQuery'];</script>
+<!-- HubSpot performance collection script -->
+<script defer src="/hs/hsstatic/content-cwv-embed/static-1.1293/embed.js"></script>
+<script src="https://content.redpitaya.com/hubfs/hub_generated/template_assets/1/58765872426/1793364470012/template_main.min.js"></script>
+<script src="https://content.redpitaya.com/hubfs/hub_generated/template_assets/1/58847330871/1793364472184/template_tooltip.min.js"></script>
+<script src="https://content.redpitaya.com/hubfs/hub_generated/template_assets/1/58918640166/1793364469293/template_slick.min.js"></script>
+<script>
+var hsVars = hsVars || {}; hsVars['language'] = 'en';
+</script>
+
+<script src="/hs/hsstatic/cos-i18n/static-1.53/bundles/project.js"></script>
+
+    <!--[if lte IE 8]>
+    <script charset="utf-8" src="https://js.hsforms.net/forms/v2-legacy.js"></script>
+    <![endif]-->
+
+<script data-hs-allowed="true" src="/_hcms/forms/v2.js"></script>
+
+    <script data-hs-allowed="true">
+        var options = {
+            portalId: '7715357',
+            formId: 'b1fa2de8-9a02-49b1-8858-3b23320d2f08',
+            formInstanceId: '4108',
+            
+            pageId: '225003571220',
+            
+            region: 'na1',
+            
+            
+            
+            
+            pageName: "Hardware Fingerprinting for Cyber-Physical Systems: How an FPGA-Based Board Identifies Rogue Devices at the Physical Layer",
+            
+            
+            
+            inlineMessage: "Thank you for submitting the form.",
+            
+            
+            rawInlineMessage: "Thank you for submitting the form.",
+            
+            
+            hsFormKey: "2d038d031bf3ec4f5321fc39df6838c9",
+            
+            
+            css: '',
+            target: '#hs_form_target_blog-subscription-form_',
+            
+            
+            
+            
+            
+            
+            
+            contentType: "blog-post",
+            
+            
+            
+            formsBaseUrl: '/_hcms/forms/',
+            
+            
+            
+            formData: {
+                cssClass: 'hs-form stacked hs-custom-form'
+            }
+        };
+
+        options.getExtraMetaDataBeforeSubmit = function() {
+            var metadata = {};
+            
+
+            if (hbspt.targetedContentMetadata) {
+                var count = hbspt.targetedContentMetadata.length;
+                var targetedContentData = [];
+                for (var i = 0; i < count; i++) {
+                    var tc = hbspt.targetedContentMetadata[i];
+                     if ( tc.length !== 3) {
+                        continue;
+                     }
+                     targetedContentData.push({
+                        definitionId: tc[0],
+                        criterionId: tc[1],
+                        smartTypeId: tc[2]
+                     });
+                }
+                metadata["targetedContentMetadata"] = JSON.stringify(targetedContentData);
+            }
+
+            return metadata;
+        };
+
+        hbspt.forms.create(options);
+    </script>
+
+<script src="/hs/hsstatic/keyboard-accessible-menu-flyouts/static-1.17/bundles/project.js"></script>
+
+<!-- Start of HubSpot Analytics Code -->
+<script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "blog-post"]);
+_hsq.push(["setCanonicalUrl", "https:\/\/content.redpitaya.com\/blog\/hardware-fingerprinting-red-pitaya-cyber-physical-security"]);
+_hsq.push(["setPageId", "225003571220"]);
+_hsq.push(["setContentMetadata", {
+    "contentPageId": 225003571220,
+    "legacyPageId": "225003571220",
+    "contentFolderId": null,
+    "contentGroupId": 29387126926,
+    "abTestId": null,
+    "languageVariantId": 225003571220,
+    "languageCode": "en",
+    
+    
+}]);
+</script>
+
+<script type="text/javascript" id="hs-script-loader" async defer src="/hs/scriptloader/7715357.js"></script>
+<!-- End of HubSpot Analytics Code -->
+
+
+<script type="text/javascript">
+var hsVars = {
+    render_id: "9518d148-7d4d-48da-808c-e9f98a22c184",
+    ticks: 1793364516654,
+    page_id: 225003571220,
+    
+    content_group_id: 29387126926,
+    portal_id: 7715357,
+    app_hs_base_url: "https://app.hubspot.com",
+    cp_hs_base_url: "https://cp.hubspot.com",
+    language: "en",
+    analytics_page_type: "blog-post",
+    scp_content_type: "",
+    
+    analytics_page_id: "225003571220",
+    category_id: 3,
+    folder_id: 0,
+    is_hubspot_user: false
+}
+</script>
+
+
+<script defer src="/hs/hsstatic/HubspotToolsMenu/static-1.640/js/index.js"></script>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript>...</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div id="fb-root"></div>
+  <script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.0";
+  fjs.parentNode.insertBefore(js, fjs);
+ }(document, 'script', 'facebook-jssdk'));</script> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+ 
+
+
+    
+<script>
+  $(".slider").slick({
+    slidesToShow: 2,
+    slidesToScroll: 2,
+    dots: true,
+    responsive: [
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  });
+</script>
+
+  
+</body></html>
