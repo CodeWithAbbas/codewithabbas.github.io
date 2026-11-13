@@ -131,9 +131,9 @@
     {
       "name": "Real-Time Authentication of Embedded Hardware",
       "publisher": "4th EAI International Conference on Security and Privacy in Cyber-Physical Systems and Smart Vehicles (SmartSP 2026)",
-      "releaseDate": "2026",
-      "url": "",
-      "summary": "H. Arif, A. Ali, S. Kiyani, H. Malik. Accepted."
+      "releaseDate": "2026-11",
+      "url": "https://smartsp.eai-conferences.org/2026/",
+      "summary": "H. Arif, A. Ali, S. Kiyani, H. Malik. Presented November 2026; proceedings to be published in Springer LNICST."
     },
     {
       "name": "A Lightweight IDS Framework Using FPGA-Based Hardware Fingerprinting on Zynq SoC",

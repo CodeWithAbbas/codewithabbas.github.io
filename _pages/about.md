@@ -20,7 +20,7 @@ social: true
 announcements:
   enabled: true
   scrollable: true
-  limit: 9
+  limit: 11
 ---
 
 <style>
@@ -92,12 +92,41 @@ graduating as a gold medalist.
     </li>
     <li class="ria-card">
       <span class="ria-node" aria-hidden="true"></span>
+      <figure class="ria-media ria-stack" data-count="2">
+        <img src="/assets/img/research/smartsp_talk.jpg" alt="Presenting Real-Time Authentication of Embedded Hardware at EAI SmartSP 2026, title slide on screen" loading="lazy" width="1100" height="733">
+        <img src="/assets/img/research/smartsp_podium.jpg" alt="At the EAI SmartSP 2026 podium on the UM-Dearborn campus" loading="lazy" width="1100" height="733">
+      </figure>
+      <div class="ria-body">
+        <span class="ria-step">SmartSP &rsquo;26 &middot; the talk</span>
+        <h3>Real-Time Authentication of Embedded Hardware</h3>
+        <p>Presented in the CPS &amp; IoT Authentication and Resilience session. The method authenticates embedded devices from the residual of their steady-state output voltage &mdash; and rejects devices it has never seen.</p>
+        <p class="ria-stat"><b>0%</b> false accepts and rejects over 266 real-time decisions &mdash; median 0.83&nbsp;s</p>
+        <a class="ria-link" href="https://smartsp.eai-conferences.org/2026/final-program/">Conference program</a>
+      </div>
+    </li>
+
+    <li class="ria-card">
+      <span class="ria-node" aria-hidden="true"></span>
       <figure class="ria-media"><img src="/assets/img/research/redpitaya.jpg" alt="Annotated test bench from the Red Pitaya feature: Analog Discovery 3, STM32F4 Discovery, Elegoo and Arduino UNO boards, a Red Pitaya STEMlab 125-14 and the host PC" loading="lazy" width="864" height="576"></figure>
       <div class="ria-body">
         <span class="ria-step">Red Pitaya &middot; featured</span>
         <h3>Featured on the Red Pitaya blog</h3>
         <p>Red Pitaya&rsquo;s technical team profiled the work: individual devices identified from the analog shape of their switching signals, with the whole pipeline on a STEMlab 125-14 and no host PC after enrollment.</p>
         <a class="ria-link" href="https://content.redpitaya.com/blog/hardware-fingerprinting-red-pitaya-cyber-physical-security">Read the post</a>
+      </div>
+    </li>
+
+    <li class="ria-card">
+      <span class="ria-node" aria-hidden="true"></span>
+      <figure class="ria-media ria-stack" data-count="3">
+        <img src="/assets/img/research/cecs_demo.jpg" alt="Demonstrating ISSF research hardware to prospective students at the UM-Dearborn CECS Exploration Event" loading="lazy" width="1100" height="733">
+        <img src="/assets/img/research/cecs_labcar.jpg" alt="Presenting in the ISSF Laboratory beside the ETAS LABCAR during the CECS Exploration Event" loading="lazy" width="1100" height="733">
+        <img src="/assets/img/research/cecs_crowd.jpg" alt="Prospective students touring the ISSF Laboratory during the CECS Exploration Event" loading="lazy" width="1100" height="733">
+      </figure>
+      <div class="ria-body">
+        <span class="ria-step">CECS &middot; outreach</span>
+        <h3>Opening the lab to future engineers</h3>
+        <p>Represented the ISSF Laboratory at the UM-Dearborn CECS Exploration Event &mdash; sharing our ongoing research, demonstrating the work, and talking with prospective engineering students.</p>
       </div>
     </li>
 
@@ -139,6 +168,20 @@ graduating as a gold medalist.
   <p class="ria-hint"><span class="ria-hint-bar"><i></i></span>Drifting &mdash; hover to pause, click to hold</p>
   </div>
 </section>
+
+<style>
+/* multi-photo cards: the first image stays in flow, the others crossfade over it */
+.ria-stack{position:relative}
+.ria-stack img+img{position:absolute;top:0;left:0;opacity:0}
+.ria-stack[data-count="2"] img:nth-child(2){animation:ria-x2 10s ease-in-out infinite}
+.ria-stack[data-count="3"] img:nth-child(2){animation:ria-x3b 15s ease-in-out infinite}
+.ria-stack[data-count="3"] img:nth-child(3){animation:ria-x3c 15s ease-in-out infinite}
+@keyframes ria-x2{0%,42%{opacity:0}50%,92%{opacity:1}100%{opacity:0}}
+@keyframes ria-x3b{0%,25.3%{opacity:0}33.3%,66.6%{opacity:1}66.7%,100%{opacity:0}}
+@keyframes ria-x3c{0%,58.6%{opacity:0}66.6%,92%{opacity:1}100%{opacity:0}}
+.ria-card:hover .ria-stack img{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){.ria-stack img+img{animation:none!important;opacity:0}}
+</style>
 
 <style>
 /* ===== Research in Action ============================================= */

@@ -89,8 +89,12 @@
   author    = {Arif, Hasan and Ali, Abbas and Kiyani, Saad and Malik, Hafiz},
   booktitle = {4th EAI International Conference on Security and Privacy in Cyber-Physical Systems and Smart Vehicles (SmartSP)},
   year      = {2026},
+  address   = {Detroit, MI},
+  month     = nov,
+  html      = {https://smartsp.eai-conferences.org/2026/},
+  abstract  = {Physical-layer device fingerprinting can complement credential-based authentication by providing evidence of the hardware instance itself, but practical deployment requires cross-session robustness, open-set rejection, and real-time operation. This paper presents an end-to-end framework for authenticating embedded devices using intrinsic deviations in controlled switched-voltage outputs. To this end, the plateau residual, defined as the deviation of the measured steady-state output voltage from the nominal LOW and HIGH reference voltages, is used to capture physics-driven characteristics of the embedded device. The plateau-residual spectrogram (PRS), a compact representation of the plateau-residual time series, is obtained using the short-time Fourier transform (STFT). A convolutional neural network (CNN) learns device-specific distortions in the PRS. A pooled-covariance Mahalanobis distance in its 128-dimensional embedding space provides open-set rejection, and nearest-centroid assignment provides enrolled-device identification. The framework is evaluated using 15 enrolled devices from five families, with three same-make-and-model units per family, measured across five sessions, together with four physical intruder devices for open-set evaluation. Under leave-one-session-out evaluation, PRS achieves 94.78% mean accuracy, compared with 89.85% for the full-cycle spectrogram baseline. In the offline open-set evaluation, the enrolled and intruder score distributions are empirically separated on the evaluated dataset, giving an observed equal error rate of 0.00%, and across 266 real-time capture-level decisions the false-accept and false-reject rates are both 0.00%, while enrolled-device identification accuracy is 96.7%, at a median end-to-end latency of 0.830 s. The framework further retains high accuracy without retraining when the data-acquisition hardware, and subsequently the full acquisition chain, are replaced. These results demonstrate the potential of residual switched-output profiles for session-robust, open-set, real-time device authentication under the evaluated conditions.},
   abbr      = {EAI SmartSP},
   bibtex_show = {true},
   selected  = {true},
-  note      = {Accepted}
+  note      = {Presented 6 November 2026. Proceedings to be published in Springer LNICST.}
 }
