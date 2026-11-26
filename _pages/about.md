@@ -107,6 +107,20 @@ graduating as a gold medalist.
 
     <li class="ria-card">
       <span class="ria-node" aria-hidden="true"></span>
+      <figure class="ria-media ria-stack" data-count="2">
+        <img src="/assets/img/research/qe_presenting.jpg" alt="Presenting Digital Fingerprinting Deployment Using FPGA at the PhD Qualifying Examination" loading="lazy" width="1100" height="733">
+        <img src="/assets/img/research/qe_standing.jpg" alt="Beside the title slide at the PhD Qualifying Examination, November 2026" loading="lazy" width="1100" height="733">
+      </figure>
+      <div class="ria-body">
+        <span class="ria-step">Milestone &middot; Qualifying Exam</span>
+        <h3>Passed the PhD Qualifying Examination</h3>
+        <p>I presented my directed study, Digital Fingerprinting Deployment Using FPGA, to my examination committee. The work was published at IEEE CSR 2025.</p>
+        <a class="ria-link" href="https://doi.org/10.1109/CSR64739.2025.11130113">Read the paper</a>
+      </div>
+    </li>
+
+    <li class="ria-card">
+      <span class="ria-node" aria-hidden="true"></span>
       <figure class="ria-media"><img src="/assets/img/research/redpitaya.jpg" alt="Annotated test bench from the Red Pitaya feature: Analog Discovery 3, STM32F4 Discovery, Elegoo and Arduino UNO boards, a Red Pitaya STEMlab 125-14 and the host PC" loading="lazy" width="864" height="576"></figure>
       <div class="ria-body">
         <span class="ria-step">Red Pitaya &middot; featured</span>
